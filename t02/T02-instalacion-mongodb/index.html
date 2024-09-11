@@ -1,0 +1,816 @@
+
+<!doctype html>
+<html lang="ca" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sebastian Ciscar">
+      
+      
+      
+        <link rel="prev" href="../../t01/T01-Instalacion-mysql/">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>Instalación de MongoDB Server - Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bcfcd587.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#instalacion-mongodb" class="md-skip">
+          Salta el contingut
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Capçalera">
+    <a href="../.." title="Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar" class="md-header__button md-logo" aria-label="Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Instalación de MongoDB Server
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Format oscur"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Format oscur" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Format clar"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Format clar" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestanyes" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../presentacio/Guia_Alumne_ASGBD/" class="md-tabs__link">
+        
+  
+    
+  
+  INICI
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../aws/aws/" class="md-tabs__link">
+        
+  
+    
+  
+  AWS
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../t01/T01-Instalacion-mysql/" class="md-tabs__link">
+        
+  
+    
+  
+  UD2
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  UD3
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegació" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar" class="md-nav__button md-logo" aria-label="Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../presentacio/Guia_Alumne_ASGBD/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    INICI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aws/aws/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AWS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../t01/T01-Instalacion-mysql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    UD2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    UD3
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    UD3
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Taula de continguts">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Taula de continguts
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introducción
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalacion-utilizando-binarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación utilizando binarios
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalacion-utilizando-el-administrador-de-paquetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación utilizando el administrador de paquetes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Instalación utilizando el administrador de paquetes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#directorios-de-mongodb" class="md-nav__link">
+    <span class="md-ellipsis">
+      directorios de MongoDB
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iniciar-el-servicio-de-mongodb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Iniciar el servicio de MongoDB
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detener-el-servicio-de-mongodb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detener el servicio de MongoDB
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conexion-a-mongodb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conexión a MongoDB
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crear-usuario-administrador" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crear usuario administrador
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Taula de continguts">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Taula de continguts
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introducción
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalacion-utilizando-binarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación utilizando binarios
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalacion-utilizando-el-administrador-de-paquetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación utilizando el administrador de paquetes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Instalación utilizando el administrador de paquetes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#directorios-de-mongodb" class="md-nav__link">
+    <span class="md-ellipsis">
+      directorios de MongoDB
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iniciar-el-servicio-de-mongodb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Iniciar el servicio de MongoDB
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detener-el-servicio-de-mongodb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detener el servicio de MongoDB
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conexion-a-mongodb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conexión a MongoDB
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crear-usuario-administrador" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crear usuario administrador
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="instalacion-mongodb">Instalación MongoDB</h1>
+<h2 id="introduccion">Introducción</h2>
+<p>MongoDB es una base de datos NoSQL de código abierto, muy popular y ampliamente utilizada en aplicaciones modernas para almacenar datos en documentos JSON. MongoDB es una base de datos NoSQL de alto rendimiento y escalable que se puede utilizar para almacenar datos de cualquier tipo sin tener que definir la estructura de los datos de antemano.</p>
+<h2 id="instalacion-utilizando-binarios">Instalación utilizando binarios</h2>
+<p>Para instalar MongoDB en un sistema Linux, primero debemos descargar el archivo binario de MongoDB desde el sitio web oficial de MongoDB. A continuación, descomprimimos el archivo binario y movemos el directorio de MongoDB a la ubicación deseada.</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>$<span class="w"> </span>wget<span class="w"> </span>https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-4.4.6.tgz
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>$<span class="w"> </span>tar<span class="w"> </span>-xvzf<span class="w"> </span>mongodb-linux-x86_64-4.4.6.tgz
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>$<span class="w"> </span>mv<span class="w"> </span>mongodb-linux-x86_64-4.4.6<span class="w"> </span>/usr/local/mongodb
+</span></code></pre></div></td></tr></table></div>
+<h2 id="instalacion-utilizando-el-administrador-de-paquetes">Instalación utilizando el administrador de paquetes</h2>
+<p>MongoDB también se puede instalar utilizando el administrador de paquetes de la distribución de Linux. A continuación se muestra cómo instalar MongoDB en Ubuntu utilizando el administrador de paquetes apt.</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>mongodb
+</span></code></pre></div></td></tr></table></div>
+<h3 id="directorios-de-mongodb">directorios de MongoDB</h3>
+<p>MongoDB utiliza varios directorios para almacenar datos, registros y archivos de configuración. A continuación se muestra una lista de los directorios utilizados por MongoDB:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Directorio</strong></th>
+<th><strong>Descripción</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/data/db</td>
+<td>Directorio predeterminado para los datos de MongoDB</td>
+</tr>
+<tr>
+<td>/var/log/mongodb</td>
+<td>Directorio de registros de MongoDB</td>
+</tr>
+<tr>
+<td>/etc/mongod.conf</td>
+<td>Archivo de configuración de MongoDB</td>
+</tr>
+<tr>
+<td>/usr/local/mongodb</td>
+<td>Directorio de instalación de MongoDB</td>
+</tr>
+</tbody>
+</table>
+<h2 id="iniciar-el-servicio-de-mongodb">Iniciar el servicio de MongoDB</h2>
+<p>Para iniciar el servicio de MongoDB, primero debemos crear el directorio de datos de MongoDB y luego iniciar el servicio de MongoDB utilizando el comando mongod.</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>$<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/data/db
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>$<span class="w"> </span>/usr/local/mongodb/bin/mongod
+</span></code></pre></div></td></tr></table></div>
+<p>También podemos iniciar el servicio de MongoDB utilizando el administrador de servicios systemctl.</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>mongodb
+</span></code></pre></div></td></tr></table></div>
+<h2 id="detener-el-servicio-de-mongodb">Detener el servicio de MongoDB</h2>
+<p>Podemos detener el servicio de MongoDB utilizando el comando mongod --shutdown.</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a>$<span class="w"> </span>/usr/local/mongodb/bin/mongod<span class="w"> </span>--shutdown
+</span></code></pre></div></td></tr></table></div>
+<p>Mediante systemctl</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>mongodb
+</span></code></pre></div></td></tr></table></div>
+<h2 id="conexion-a-mongodb">Conexión a MongoDB</h2>
+<p>Para conectarse a MongoDB, primero debemos iniciar el shell de MongoDB utilizando el comando mongo. A continuación, podemos conectarnos a la base de datos de MongoDB utilizando el comando use <database_name>.</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>$<span class="w"> </span>/usr/local/mongodb/bin/mongo
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>&gt;<span class="w"> </span>use<span class="w"> </span>testdb
+</span></code></pre></div></td></tr></table></div>
+<h2 id="crear-usuario-administrador">Crear usuario administrador</h2>
+<p>Para crear un usuario administrador en MongoDB, primero debemos conectarnos a la base de datos de administración y luego crear un usuario administrador utilizando el comando db.createUser().</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a>$<span class="w"> </span>/usr/local/mongodb/bin/mongo
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a>&gt;<span class="w"> </span>use<span class="w"> </span>admin
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a>&gt;<span class="w"> </span>db.createUser
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="o">(</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w">  </span><span class="o">{</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="w">    </span>user:<span class="w"> </span><span class="s2">&quot;admin&quot;</span>,
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="w">     </span>pwd:<span class="w"> </span><span class="s2">&quot;admin123&quot;</span>,
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="w">     </span>roles:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>role:<span class="w"> </span><span class="s2">&quot;userAdminAnyDatabase&quot;</span>,<span class="w"> </span>db:<span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">]</span><span class="w">    </span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="w">     </span><span class="o">}</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="o">)</span>
+</span></code></pre></div></td></tr></table></div>
+<h1 id="imagen-de-mongodb-en-docker">Imagen de MongoDB en docker</h1>
+<p>Para ejecutar una instancia de MongoDB en un contenedor de Docker, primero debemos descargar la imagen oficial de MongoDB desde Docker Hub y luego ejecutar el contenedor de MongoDB utilizando el comando docker run.</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a>$<span class="w"> </span>docker<span class="w"> </span>pull<span class="w"> </span>mongo
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">27017</span>:27017<span class="w"> </span>--name<span class="w"> </span>mongodb<span class="w"> </span>mongo
+</span></code></pre></div></td></tr></table></div>
+<h2 id="persistencia-de-datos">Persistencia de datos</h2>
+<p>Para persistir los datos de MongoDB en un contenedor de Docker, podemos montar un volumen de Docker en el directorio de datos de MongoDB utilizando la opción -v.</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">27017</span>:27017<span class="w"> </span>-v<span class="w"> </span>/data/db:/data/db<span class="w"> </span>--name<span class="w"> </span>mongodb<span class="w"> </span>mongo
+</span></code></pre></div></td></tr></table></div>
+<h2 id="conexion-a-mongodb-en-docker">Conexión a MongoDB en Docker</h2>
+<p>Para conectarse a la instancia de MongoDB en un contenedor de Docker, primero debemos iniciar el shell de MongoDB utilizando el comando docker exec y luego conectarnos a la base de datos de MongoDB utilizando el comando mongo.</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a>$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>mongodb<span class="w"> </span>mongo
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a>&gt;<span class="w"> </span>use<span class="w"> </span>testdb
+</span></code></pre></div></td></tr></table></div>
+<h1 id="probar-la-conexion-a-mongodb">Probar la conexión a MongoDB</h1>
+<p>Para probar la conexión a MongoDB, podemos crear una base de datos y una colección en MongoDB y luego insertar algunos documentos en la colección.</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span>
+<span class="normal"><a href="#__codelineno-11-5">5</a></span>
+<span class="normal"><a href="#__codelineno-11-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a>$<span class="w"> </span>/usr/local/mongodb/bin/mongo
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a>&gt;<span class="w"> </span>use<span class="w"> </span>testdb
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a>&gt;<span class="w"> </span>db.createCollection<span class="o">(</span><span class="s2">&quot;users&quot;</span><span class="o">)</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a>&gt;<span class="w"> </span>db.users.insert<span class="o">({</span>name:<span class="w"> </span><span class="s2">&quot;Alice&quot;</span>,<span class="w"> </span>age:<span class="w"> </span><span class="m">30</span><span class="o">})</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a>&gt;<span class="w"> </span>db.users.insert<span class="o">({</span>name:<span class="w"> </span><span class="s2">&quot;Bob&quot;</span>,<span class="w"> </span>age:<span class="w"> </span><span class="m">25</span><span class="o">})</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a>&gt;<span class="w"> </span>db.users.find<span class="o">()</span>
+</span></code></pre></div></td></tr></table></div>
+<h1 id="asegurar-mongodb">Asegurar MongoDB</h1>
+<p>Para asegurar MongoDB, podemos habilitar la autenticación de MongoDB y crear usuarios con roles específicos en MongoDB.</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-12-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-12-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-12-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-12-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-12-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-12-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-12-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-12-10">10</a></span>
+<span class="normal"><a href="#__codelineno-12-11">11</a></span>
+<span class="normal"><a href="#__codelineno-12-12">12</a></span>
+<span class="normal"><a href="#__codelineno-12-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a>$<span class="w"> </span>/usr/local/mongodb/bin/mongo
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a>&gt;<span class="w"> </span>use<span class="w"> </span>admin
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a>&gt;<span class="w"> </span>db.createUser
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="o">(</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="w">  </span><span class="o">{</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="w">    </span>user
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7"></a>:<span class="w"> </span><span class="s2">&quot;admin&quot;</span>,
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8"></a><span class="w">     </span>pwd:<span class="w"> </span><span class="s2">&quot;admin123&quot;</span>,
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="w">     </span>roles:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>role:<span class="w"> </span><span class="s2">&quot;userAdminAnyDatabase&quot;</span>,<span class="w"> </span>db:<span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">]</span><span class="w">    </span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10"></a><span class="w">     </span><span class="o">}</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11"></a><span class="o">)</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12"></a>&gt;<span class="w"> </span>db.auth<span class="o">(</span><span class="s2">&quot;</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13"></a><span class="s2">admin&quot;</span>,<span class="w"> </span><span class="s2">&quot;admin123&quot;</span><span class="o">)</span>
+</span></code></pre></div></td></tr></table></div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+        
+      
+      <nav class="md-footer__inner md-grid" aria-label="Peu de pàgina" >
+        
+          
+          <a href="../../t01/T01-Instalacion-mysql/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: UD2">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                UD2
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright - Sebastian Ciscar - Professor Departament d'Informàtica IES Jaume II el Just (Tavernes de la Valldigna)
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "content.code.copy", "content.code.annotate", "content.code.select", "navigation.footer"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copiat al porta-retalls", "clipboard.copy": "C\u00f2pia al porta-retalls", "search.result.more.one": "1 m\u00e9s en aquesta p\u00e0gina", "search.result.more.other": "# m\u00e9s en aquesta p\u00e0gina", "search.result.none": "Cap document coincideix", "search.result.one": "1 document coincident", "search.result.other": "# documents coincidents", "search.result.placeholder": "Escriu per a comen\u00e7ar a cercar", "search.result.term.missing": "Desaparegut", "select.version": "Selecciona la versi\u00f3"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+    
+  </body>
+</html>
