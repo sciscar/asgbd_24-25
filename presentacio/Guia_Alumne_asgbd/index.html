@@ -7,12 +7,8 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
       
-        <meta name="author" content="Sebastian Ciscar">
       
       
-      
-      
-        <link rel="next" href="../../aws/aws/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +16,7 @@
     
     
       
-        <title>Guia Didàctica.\newline - Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar</title>
+        <title>Presentació del mòdul ASGBD - Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar</title>
       
     
     
@@ -72,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#continguts-del-modul-unitats-didactiques" class="md-skip">
+        <a href="#presentacio-del-modul-asgbd" class="md-skip">
           Salta el contingut
         </a>
       
@@ -106,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Guia Didàctica.\newline
+              Presentació del mòdul ASGBD
             
           </span>
         </div>
@@ -162,11 +158,9 @@
         
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="./" class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../Guia_Alumne_ASGBD.md" class="md-tabs__link">
         
   
     
@@ -240,9 +234,7 @@
           
             
               
-                
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -268,19 +260,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../Guia_Alumne_ASGBD.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -289,7 +272,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -362,8 +344,6 @@
             
             
               
-                
-              
               <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
@@ -389,60 +369,106 @@
                   
 
 
+<h1 id="presentacio-del-modul-asgbd">Presentació del mòdul ASGBD</h1>
+<p><img alt="bg opacity:30%" src="../img/fondo_portada_slides.webp" /></p>
+<hr />
+<p>El mòdul d'Administració de Sistemes Gestors de Bases de Dades (ASGBD) pertany al 2on curs del CFGS d'Administració de Sistemes Informàtics en Xarxa. Aquest mòdul està dissenyat per dotar els alumnes de les habilitats necessàries per a l'administració, configuració i manteniment de bases de dades, així com per garantir la seguretat i integritat de la informació.</p>
 <h1 id="continguts-del-modul-unitats-didactiques">Continguts del mòdul. Unitats didàctiques</h1>
-<p>Els continguts del mòdul s'organitzen en les següents unitats didàctiques:</p>
-<p><strong>UD 1. Kotlin</strong>
-:   En aquesta unitat veurem el llenguatge Kotlin. Aquest llenguatge serà el que emprarem per les unitats 2, 3 i 4.</p>
-<p><strong>UD 2. Programació multiprocés</strong>
-:   En aquesta unitat veurem què són els processos, serveis i fils d’execució i com el sistema operatiu treballa amb aquests, així com les principals ordres del sistema operatiu per gestionar-los. També s’abordarà la programació concurrent, paral·lela i distribuïda, la creació i gestió de processos i els mecanismes de comunicació entre ells.</p>
-<p><strong>UD 3. Programació multifil</strong>
-:   En aquesta unitat es tractarà la programació d’aplicacions amb múltiples fils, els recursos que comparteixen, els estats i les llibreries i classes necessàries per a la creació, inicialització, gestió i finalització de fils, així com els mecanismes de sincronització i l’intercanvi d’informació entre ells.</p>
-<p><strong>UD 4. Programació de comunicacions en xarxa</strong>
-:   En aquesta unitat estudiarem les llibreríes necessàries per a la programació d'aplicacions en xarxa, i ens centrarem en el mecanisme de sockets per tal d’implementar les comunicacions dins les aplicacions. Veurem també diferents protocols de comunicació en xarxa a nivell d’aplicació, i generarem serveis que els implementen mitjançant el mecanisme dels sockets.</p>
-<p><strong>UD 5. Programació concurrent amb NodeJS</strong>
-:   En aquesta unitat s’introduirà el framework nodeJS per al desenvolupament de serveis,i s'abordarà el seu particular model de gestió de la concurrència.</p>
-<p><strong>UD 6. Serveis amb NodeJS</strong>
-:   En aquesta última unitat s'abordarà el desenvolupament de serveis web amb NodeJS, els quals s'oferiran a les aplicacions a través d'APIs de tipus REST, mitjançant la llibreria Express. També farem ús de mecanismes d'autenticació com JWT i farem una introducció a l'arquitectura de microserveis, utilitzant contenidors amb Docker.</p>
-<h1 id="aspectes-metodologics">Aspectes metodològics</h1>
-<h2 id="material-didactic">Material Didàctic</h2>
-<p>El material didàctic del mòdul pot ressumir-se en el següent:</p>
+<p><img alt="bg right:35%" src="../img/fondo_portada_slides.webp" /></p>
+<hr />
 <ul>
-<li>Apunts proporcionats pel professor, tant en format web, dins el qual puguen navegar d'un aparta a altre, com en format imprimible.</li>
+<li>
+<p><strong>UD 1. Instal·lació de MySQL Server (3 hores)</strong><br />
+    Aprendràs a instal·lar i configurar un servidor MySQL, crear bases de dades i gestionar taules, així com una introducció als procediments emmagatzemats.</p>
+</li>
+<li>
+<p><strong>UD 2. MongoDB (3 hores)</strong><br />
+    Coneixeràs les bases de dades NoSQL amb MongoDB i la seva aplicació en la gestió d'informació no estructurada. També integrarem MongoDB en aplicacions web.</p>
+</li>
+<li>
+<p><strong>UD 3. AWS i Bases de Dades en el Núvol (3 hores)</strong><br />
+    Introducció als serveis de bases de dades en el núvol amb AWS, configuració d'AWS RDS, DynamoDB i S3, i pràctiques amb aquests serveis.</p>
+</li>
+</ul>
+<hr />
+<ul>
+<li>
+<p><strong>UD 4. Administració del Servidor MySQL (9 hores)</strong><br />
+    Configuració avançada del servidor MySQL, gestió de variables del sistema, estadístiques, i la implementació de procediments emmagatzemats i funcions.</p>
+</li>
+<li>
+<p><strong>UD 5. Usuaris, Permisos i Rols (9 hores)</strong><br />
+    Creació i gestió d'usuaris a MySQL, assignació de permisos i rols, i la implementació de mesures de seguretat per protegir les dades.</p>
+</li>
+<li>
+<p><strong>UD 6. Còpies de Seguretat (9 hores)</strong><br />
+    Coneixeràs els diferents tipus de còpies de seguretat, estratègies efectives per fer còpies i la restauració de dades en MySQL.</p>
+</li>
+</ul>
+<hr />
+<ul>
+<li>
+<p><strong>UD 7. Rèpliques en Bases de Dades (9 hores)</strong><br />
+    Introducció a les rèpliques en bases de dades MySQL, configuració de servidors mestre-rèplica, i pràctiques de rèpliques i recuperació de dades.</p>
+</li>
+<li>
+<p><strong>UD 8. Procediments Emmagatzemats (9 hores)</strong><br />
+    Creació i gestió de procediments emmagatzemats a MySQL, amb aplicacions pràctiques i implementació en casos reals.</p>
+</li>
+</ul>
+<h2 id="material-didactic">Material Didàctic</h2>
+<p><img alt="bg right:50%" src="../img/material.webp" /></p>
+<hr />
+<ul>
+<li>Apunts proporcionats pel professor.</li>
 <li>Textos d'ampliació i enllaços a articles i documentació oficial relacionats amb cada unitat.</li>
 <li>Pràctiques i exercicis resolts per reforçar el que s'ha exposat als apunts.</li>
-<li>Vídeos explicatius d'aquells aspectes que requerisquen d'una explicació més visual.</li>
 </ul>
+<hr />
 <p>Tot aquest material s'oferirà a través de l'aula virtual durant el desenvolupament de cada unitat.</p>
 <p>A més, dins l'aula virtual, disposarem d'un fòrum general per comentar aspectes globals del mòdul, i un fòrum per cada unitat didàctica, per tal deresoldre dubtes i tractar aspectes relacionats amb la unitat.</p>
 <h2 id="programari">Programari</h2>
-<p>El programari a utilitzar serà principalment lliure, i es donaran instruccions en cada unitat per a la seua descàrrega i instal·lació. A grans trets, el programari a utilitzar serà:</p>
+<p>El programari a utilitzar serà principalment lliure, i es donaran instruccions en cada unitat per a la seua descàrrega i instal·lació:</p>
 <ul>
-<li><strong>Ubuntu 24.04/JustiX</strong> com a sistema operatiu de base utilitzat a l'aula. No obstant això, l'alumne pot utilitzar qualsevol altre sistema operatiu, ja que tot el programari amb què treballarem és multiplataforma.</li>
-<li><strong>Visual Studio Code</strong> com a editor de codi, que suporta diferents llenguatges, i és bastant ampliable amb extensions. Tot i que serà l'editor de referència, es pot fer ús de NetBeans, Eclipse, InteliJ o qualsevol altre editor/IDE.</li>
-<li><strong>Java</strong>, com a entorn de compilació i execuió</li>
-<li><strong>Kotlin</strong>, llenguatge de programació </li>
-<li><strong>nodejs</strong>, per al desenvolupament de servidors amb nodeJS</li>
-<li><strong>ExpressJS</strong>, llibrería per al desenvolupament de serveis web</li>
+<li><strong>Kubuntu 24.04</strong> com a sistema operatiu de base utilitzat a l'aula. No obstant això, l'alumne pot utilitzar qualsevol altre sistema operatiu, ja que tot el programari amb què treballarem és multiplataforma.</li>
+</ul>
+<hr />
+<ul>
+<li><strong>MySQL Server</strong>, com a sistema gestor de bases de dades relacional.</li>
+<li><strong>MongoDB</strong>, com a sistema gestor de bases de dades NoSQL.</li>
+<li><strong>AWS</strong>, com a entorn per desplegar maquines virtuals i bases de dades en el núvol.</li>
 <li><strong>Docker</strong>, com a contenidor d'aplicacions.</li>
 </ul>
 <h3 id="eines-web-i-collaboratives">Eines web i col·laboratives</h3>
 <p>A banda del programari esmentat anteriorment, també s'utilitzaran el següent portals web i plataformes de treball col·laboratiu:</p>
 <ul>
-<li><strong>Portals Aules/Moodle</strong>: Com a aula virtual, i que articularà el funcionament del mòdul. Serà aci on s'ubiquen els diferents recursos, fòrums, etc.</li>
-<li><strong>MS Teams</strong>: Des del curs passat, el nostre centre és <em>Centre Digital Col·laboratiu</em>, pel que cada alumne i professor disposa d'una identitat digital que li proporciona accés a tota la suite d'enies d'Office 365. Entre aquestes, la que utilitzarem de forma més freqüent serà <em>MS Teams</em>, a través de la qual s'organitzaran les diferents tutoríes col·lectives mitjançant videoconferència.</li>
+<li><strong>Portals Aules</strong>: Com a aula virtual, i que articularà el funcionament del mòdul. Serà aci on s'ubiquen els diferents recursos, fòrums, etc.</li>
+<li><strong>MS Teams</strong>:El nostre centre és <em>Centre Digital Col·laboratiu</em>, pel que cada alumne i professor disposa d'una identitat digital que li proporciona accés a tota la suite d'enies d'Office 365. Entre aquestes, la que utilitzarem de forma més freqüent serà <em>MS Teams</em>, a través de la qual s'organitzaran les diferents tutoríes .</li>
+</ul>
+<hr />
+<ul>
 <li><strong>Github</strong>: En alguns projectes en grup, serà de gran ajuda treballar amb sistemes de control de versions distribuits, com <em>Github</em> o <em>Gitlab</em>, de manera que puguen realitzar desenvolupaments de forma col·laborativa.</li>
 </ul>
 <h2 id="metodologia">Metodologia</h2>
+<p><img alt="bg right:50%" src="../img/metodologia.webp" /></p>
+<hr />
 <p>Per a cada unitat disposareu de la teoría, projectes i exemples pràctics, i d'orientacions per tal de realitzar les activitats pràctiques que se us plantegen, així com enllaços a documentació addicional i complementària per a les activitats d'ampliació.</p>
 <p>En línies generals, la manera de treballar en cada unitat serà la següent:</p>
 <ul>
 <li>En iniciar cada unitat didàtica es realitzarà una presentació inicial d'aquesta, dels conceptes bàsics, i de què seran capaços de fer en finalitzar-la.</li>
-<li>Disposareu del material per a la seua lectura comprensiva i estudi</li>
-<li>També disposareu de documentació addicional per ampliar o puntualitzar allò exposat a classe,</li>
-<li>Se us proporcionaran exercicis i pràctiques guiades que acompanyen la teoría de la unitat i que us ajudaran a entendre els conceptes de la unitat.</li>
-<li>També es realitzaran activitats i pràctiques de consolidació i reforç</li>
-<li>Les session a l'aula (Tutoríes col·lectives) tindran un caràcter fonamentalment pràctic, i s'aprofitaran exemples i casos pràctics per exposar els principals conceptes.</li>
 </ul>
+<hr />
+<ul>
+<li>Disposareu del material per a la seua lectura comprensiva i estudi</li>
+<li>
+<p>També disposareu de documentació addicional per ampliar o puntualitzar allò exposat a classe.</p>
+</li>
+<li>
+<p>Se us proporcionaran exercicis i pràctiques guiades que acompanyen la teoría de la unitat i que us ajudaran a entendre els conceptes de la unitat.</p>
+</li>
+<li>També es realitzaran activitats i pràctiques de consolidació i reforç</li>
+</ul>
+<hr />
 
 
 
@@ -455,8 +481,6 @@
 
 
 
-
-  
 
 
 
@@ -472,30 +496,6 @@
       
         <footer class="md-footer">
   
-    
-      
-        
-      
-      <nav class="md-footer__inner md-grid" aria-label="Peu de pàgina" >
-        
-        
-          
-          <a href="../../aws/aws/" class="md-footer__link md-footer__link--next" aria-label="Següent: AWS">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Següent
-              </span>
-              <div class="md-ellipsis">
-                AWS
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">
