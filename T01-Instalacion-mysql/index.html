@@ -1,0 +1,1611 @@
+
+<!doctype html>
+<html lang="ca" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sebastian Ciscar">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>Instalación de MySql Server - Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.bcfcd587.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#instalacion-mysql-server" class="md-skip">
+          Salta el contingut
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Capçalera">
+    <a href=".." title="Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar" class="md-header__button md-logo" aria-label="Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Instalación de MySql Server
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Format oscur"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Format oscur" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Format clar"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Format clar" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestanyes" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  UD1
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegació" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar" class="md-nav__button md-logo" aria-label="Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    UD1
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    UD1
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Taula de continguts">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Taula de continguts
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#instalacion-utilizando-binarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación utilizando binarios
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crear-un-usuario-y-un-grupo-de-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crear un usuario y un grupo de mysql
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#obtenga-y-desempaquete-la-aplicacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Obtenga y desempaquete la aplicación
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalacion-utilizando-el-gestor-de-paquetes-apt-de-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación utilizando el gestor de paquetes APT de linux.
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Instalación utilizando el gestor de paquetes APT de linux.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pasos-para-una-nueva-instalacion-de-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pasos para una nueva instalación de MySql
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-del-paquete-con-apt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación del paquete con APT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iniciar-y-detener-el-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Iniciar y detener el servidor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalar-componentes-adicionales-de-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalar componentes adicionales de MySql
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actualizar-la-version-de-mysql-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Actualizar la versión de MySql Server
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Actualizar la versión de MySql Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eliminando-mysql-con-apt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Eliminando MySql con APT
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paquetes-disponibles-del-repositorio-apt-de-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paquetes disponibles del repositorio APT de Mysql
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracion-y-pruebas-posteriores-a-la-instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración y pruebas posteriores a la instalación
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuración y pruebas posteriores a la instalación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inicializacion-del-directorio-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inicialización del directorio de datos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inicialización del directorio de datos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#descripcion-general-de-la-inicializacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Descripción general de la inicialización
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#procedimiento-de-inicializacion-del-directorio-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Procedimiento de inicialización del directorio de datos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acciones-en-el-servidor-durante-la-inicializacion-del-directorio-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Acciones en el servidor durante la inicialización del directorio de datos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asignacion-de-la-contrsena-root-posterior-a-la-inicializacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asignación de la contrseña root posterior a la inicialización
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iniciar-el-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Iniciar el servidor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#probar-el-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Probar el servidor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asegurar-la-cuenta-inicial-de-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asegurar la cuenta inicial de MySQL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actualizacion-de-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Actualización de mysql
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Actualización de mysql">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rutas-de-actualizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rutas de actualización
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-actualiza-el-proceso-de-actualizacion-de-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué actualiza el proceso de actualización de MySQL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uso-de-imagen-docker-para-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uso de imagen Docker para MySql
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Uso de imagen Docker para MySql">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#descargar-la-imagen-de-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Descargar la imagen de Docker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iniciar-un-contenedor-de-docker-con-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Iniciar un contenedor de Docker con MySQL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conectarse-al-contenedor-de-docker-con-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conectarse al contenedor de Docker con MySQL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detener-y-eliminar-el-contenedor-de-docker-con-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detener y eliminar el contenedor de Docker con MySQL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistencia-de-datos-en-contenedores-de-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistencia de datos en contenedores de Docker
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Taula de continguts">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Taula de continguts
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#instalacion-utilizando-binarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación utilizando binarios
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crear-un-usuario-y-un-grupo-de-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crear un usuario y un grupo de mysql
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#obtenga-y-desempaquete-la-aplicacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Obtenga y desempaquete la aplicación
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalacion-utilizando-el-gestor-de-paquetes-apt-de-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación utilizando el gestor de paquetes APT de linux.
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Instalación utilizando el gestor de paquetes APT de linux.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pasos-para-una-nueva-instalacion-de-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pasos para una nueva instalación de MySql
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-del-paquete-con-apt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación del paquete con APT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iniciar-y-detener-el-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Iniciar y detener el servidor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalar-componentes-adicionales-de-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalar componentes adicionales de MySql
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actualizar-la-version-de-mysql-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Actualizar la versión de MySql Server
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Actualizar la versión de MySql Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eliminando-mysql-con-apt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Eliminando MySql con APT
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paquetes-disponibles-del-repositorio-apt-de-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paquetes disponibles del repositorio APT de Mysql
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracion-y-pruebas-posteriores-a-la-instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración y pruebas posteriores a la instalación
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuración y pruebas posteriores a la instalación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inicializacion-del-directorio-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inicialización del directorio de datos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inicialización del directorio de datos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#descripcion-general-de-la-inicializacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Descripción general de la inicialización
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#procedimiento-de-inicializacion-del-directorio-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Procedimiento de inicialización del directorio de datos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acciones-en-el-servidor-durante-la-inicializacion-del-directorio-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Acciones en el servidor durante la inicialización del directorio de datos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asignacion-de-la-contrsena-root-posterior-a-la-inicializacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asignación de la contrseña root posterior a la inicialización
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iniciar-el-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Iniciar el servidor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#probar-el-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Probar el servidor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asegurar-la-cuenta-inicial-de-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asegurar la cuenta inicial de MySQL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actualizacion-de-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Actualización de mysql
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Actualización de mysql">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rutas-de-actualizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rutas de actualización
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-actualiza-el-proceso-de-actualizacion-de-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué actualiza el proceso de actualización de MySQL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uso-de-imagen-docker-para-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uso de imagen Docker para MySql
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Uso de imagen Docker para MySql">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#descargar-la-imagen-de-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Descargar la imagen de Docker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iniciar-un-contenedor-de-docker-con-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Iniciar un contenedor de Docker con MySQL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conectarse-al-contenedor-de-docker-con-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conectarse al contenedor de Docker con MySQL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detener-y-eliminar-el-contenedor-de-docker-con-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detener y eliminar el contenedor de Docker con MySQL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistencia-de-datos-en-contenedores-de-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistencia de datos en contenedores de Docker
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="instalacion-mysql-server">Instalación MySql Server</h1>
+<h2 id="instalacion-utilizando-binarios">Instalación utilizando binarios</h2>
+<p>Oracle proporciona un conjunto de distribuciones binarias de MySQL. 
+Estas incluyen distribuciones genéricas binarias en forma de archivos <strong>tar</strong>, archivos con una tar.xz como extensión. Existen diferentes binarios specíficos para cada plataforma.
+En esta sección vamos a ver la instalación de MySQL desde una distribución binaria de archivo <strong>tar</strong> comprimido para la plataforma <strong>Unix/Linux</strong>. </p>
+<p>Ejemplo para descargar el binario:
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>terminal&gt;wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.26-linux-glibc2.12-x86_64.tar.xz
+</span></code></pre></div></td></tr></table></div></p>
+<p>Advertencias:
+* Si ha instalado previamnente una versión de MySql utilizando YUM/APT (Gestores de paquetes) puede experimentar problemas. Asegurarse de eliminar las aplicaciones y ficheros de configuración completamente del sistema
+* MySql depende de la biblioteca <strong>libaio</strong>, si es necesario instalela utilizando el administrador de paquetes adecuado.</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>terminal&gt; apt-cache search libaio # search for info
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>terminal&gt; apt-get install libaio1 # install library for APT-based systems
+</span></code></pre></div></td></tr></table></div>
+<p>Para instalar una distribución binaria de archivo tar comprimido , descomprímalo en la ubicación de instalación que elija (normalmente /usr/local/mysql). Esto crea los directorios que se muestran en la siguiente tabla.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Directorio</strong></th>
+<th><strong>Contenido</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bin</td>
+<td>programas de utilidad, cliente y servidor <strong>mysqld</strong></td>
+</tr>
+<tr>
+<td>docs</td>
+<td>Manual de MySQL en formato Info</td>
+</tr>
+<tr>
+<td>man</td>
+<td>Páginas de manual de Unix</td>
+</tr>
+<tr>
+<td>include</td>
+<td>Páginas de manual de Unix</td>
+</tr>
+<tr>
+<td>lib</td>
+<td>Bibliotecas</td>
+</tr>
+<tr>
+<td>share</td>
+<td>Mensajes de error, diccionario y SQL para la instalación de la base de datos</td>
+</tr>
+<tr>
+<td>support-files</td>
+<td>Archivos de soporte varios</td>
+</tr>
+</tbody>
+</table>
+<p>La secuencia de comandos para instalar MySql es la siguiente:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>terminal&gt; groupadd mysql
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>terminal&gt; useradd -r -g mysql -s /bin/false mysql
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>terminal&gt; cd /usr/local
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>terminal&gt; tar xvf /path/to/mysql-VERSION-OS.tar.xz
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a>terminal&gt; ln -s full-path-to-mysql-VERSION-OS mysql
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a>terminal&gt; export PATH=$PATH:/usr/local/mysql/bin
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a>terminal&gt; cd mysql
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a>terminal&gt; mkdir mysql-files
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a>terminal&gt; chown mysql:mysql mysql-files
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a>terminal&gt; chmod 750 mysql-files
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a>terminal&gt; bin/mysqld --initialize --user=mysql
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a>terminal&gt; bin/mysql_ssl_rsa_setup
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a>terminal&gt; bin/mysqld_safe --user=mysql &amp; # Next command is optional
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14"></a>terminal&gt; cp support-files/mysql.server /etc/init.d/mysql.server
+</span></code></pre></div></td></tr></table></div>
+<p>Este proceso asume que tenemos acceso <strong>root</strong> al sistema. Alternativamente podemos prefijar cada comando usando el comando <strong>sudo</strong> </p>
+<h2 id="crear-un-usuario-y-un-grupo-de-mysql">Crear un usuario y un grupo de mysql</h2>
+<p>Si su sistema aún no tiene un usuario y un grupo para usar para ejecutar <strong>mysqld</strong>, es posible que deba crearlos. La sintaxis de useradd y groupadd puede diferir ligeramente en diferentes versiones de <strong>Unix/Linux</strong>, o pueden tener diferentes nombres como adduser y addgroup.</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>terminal&gt; groupadd mysql
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>terminal&gt; useradd -r -g mysql -s /bin/false mysql
+</span></code></pre></div></td></tr></table></div>
+<p>Debido a que el usuario solo es necesario para fines de propiedad, no de inicio de sesión, el comando useradd utiliza las opciones <strong>-ry -s /bin/false</strong> para crear un usuario que no tenga permisos de inicio de sesión en el servidor.</p>
+<h2 id="obtenga-y-desempaquete-la-aplicacion">Obtenga y desempaquete la aplicación</h2>
+<p>Elija el directorio en el que desea descomprimir la distribución y cambie la ubicación en él. El ejemplo aquí descomprime la distribución en /usr/local. Por lo tanto, las instrucciones asumen que tiene permiso para crear archivos y directorios en /usr/local. Si ese directorio está protegido, debe realizar la instalación como root.
+Obtenga un archivo de distribución siguiendo las instrucciones de la <a href="https://dev.mysql.com/doc/refman/8.0/en/getting-mysql.html">“Cómo obtener MySQL”</a> de la documentación de MySql. Para una versión determinada, las distribuciones binarias para todas las plataformas se crean a partir de la misma distribución fuente de MySQL.
+Desempaquete la distribución, que crea el directorio de instalación. tar puede descomprimir y descomprimir la distribución si tiene la zopción de soporte:
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a>terminal&gt; cd /usr/local
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>terminal&gt; tar xvf /path/to/mysql-VERSION-OS.tar.xz
+</span></code></pre></div></td></tr></table></div>
+El comando <strong>tar</strong> crea un directorio llamado <strong>.mysql-VERSION-OS</strong></p>
+<p>Si su <strong>tar</strong> no es compatible con <strong>xz</strong> utilizar el siguiente comando:
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>terminal&gt; xz -dc /path/to/mysql-VERSION-OS.tar.xz | tar x
+</span></code></pre></div></td></tr></table></div>
+Por último crear el enlace simbólico a la carpeta de instalación y agregar el directorio al path para que sea más sencillo acceder a los programas.
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>terminal&gt; ln -s full-path-to-mysql-VERSION-OS mysql
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>terminal&gt; export PATH=$PATH:/usr/local/mysql/bin
+</span></code></pre></div></td></tr></table></div>
+Por último saltar a: Configuración y pruebas posteriores a la instalación.</p>
+<h2 id="instalacion-utilizando-el-gestor-de-paquetes-apt-de-linux">Instalación utilizando el gestor de paquetes APT de linux.</h2>
+<p>Al igual que en el punto anterior, asumimos que en el sistema no se ha instalado previamente ninguna verisón de MySql Server o ha sido eliminada completamente.</p>
+<h3 id="pasos-para-una-nueva-instalacion-de-mysql">Pasos para una nueva instalación de MySql</h3>
+<p>Primero agragar el paquete .deb del repositorio APT de MySql. Podemos descargarlo del <a href="https://dev.mysql.com/downloads/repo/apt/">reporsitorio</a>.
+Instalar el paquete con el siguiente comando (reemplazar x-y-z con la versión utlizada)
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a>terminal&gt; sudo dpkg -i mysql-apt-config_w.x.y-z_all.deb
+</span></code></pre></div></td></tr></table></div>
+Durante la instalación del paquete, se pedirá que elija las versiones del servidor MySQL y otros componentes (por ejemplo, MySQL Workbench) que quieres instalar. Si no estás seguro de qué versión elegir, no cambies las opciones predeterminadas seleccionadas.
+Actualizar la información de los repositiorios <strong>paso obligado</strong>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a>terminal&gt; sudo apt-get update
+</span></code></pre></div></td></tr></table></div></p>
+<h3 id="instalacion-del-paquete-con-apt">Instalación del paquete con APT</h3>
+<p>Instalar con el comando:
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a>terminal&gt; sudo apt-get install mysql-server
+</span></code></pre></div></td></tr></table></div>
+Esto instala el paquete para el servidor MySQL, así como los paquetes para el cliente y para los archivos comunes de la base de datos. Durante la instalación, se le pedirá que proporcione una <strong>contraseña</strong> para el usuario <strong>root</strong> para su instalación de MySQL.</p>
+<h3 id="iniciar-y-detener-el-servidor">Iniciar y detener el servidor</h3>
+<p>El servidor MySQL se inicia automáticamente después de la instalación. Puede verificar el estado del servidor MySQL con el siguiente comando:
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a>terminal&gt; systemctl status mysql
+</span></code></pre></div></td></tr></table></div>
+Si el sistema operativo está habilitado para systemd, los comandos estándar systemctl (o alternativamente, servicio con los argumentos invertidos) como detener, iniciar, estado y reiniciar deben usarse para administrar el servicio del servidor MySQL. El servicio mysql está habilitado de forma predeterminada y se inicia al reiniciar el sistema. Consulte Administrar MySQL Server con systemd para obtener información adicional.</p>
+<p>Opciones de <strong>systemctl</strong>.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Opcion</strong></th>
+<th><strong>Significado</strong></th>
+<th><strong>Comando</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stop</td>
+<td>Detener el servicio</td>
+<td>systemctl stop mysql</td>
+</tr>
+<tr>
+<td>start</td>
+<td>Iniciar el servicio</td>
+<td>systemctl start mysql</td>
+</tr>
+<tr>
+<td>restart</td>
+<td>Reiniciar el servicio (star/stop)</td>
+<td>systemctl restart mysql</td>
+</tr>
+<tr>
+<td>reload</td>
+<td>Recargar la configuración</td>
+<td>systemctl reload mysql</td>
+</tr>
+</tbody>
+</table>
+<h3 id="instalar-componentes-adicionales-de-mysql">Instalar componentes adicionales de MySql</h3>
+<p>Puedes usar APT para instalar componentes individuales de MySQL desde el repositorio APT de MySQL. Suponiendo que ya tiene el repositorio APT de MySQL en la lista de repositorios de su sistema. Primero, use el siguiente comando para obtener la información más reciente del paquete del repositorio APT de MySQL:
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a>terminal&gt; sudo apt-get update
+</span></code></pre></div></td></tr></table></div>
+Ejemplos:
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a>terminal&gt; sudo apt-get install mysql-workbench-community #cliente workbench
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a>terminal&gt; sudo apt-get install libmysqlclient21 #bibliotecas cliente compartidas
+</span></code></pre></div></td></tr></table></div></p>
+<h2 id="actualizar-la-version-de-mysql-server">Actualizar la versión de MySql Server</h2>
+<p>Advertencias:
+* Tener una copiar de seguridad previa de la información antes de actualizar
+* Si es posible probar primero en un servidor de preproducción
+* Los comandos que veremos a continuación no sirven si la instalación previa no es de Oracle... Si es MariaDB o Percona</p>
+<p>Primero asegurarse que tenemos el repositorio MySQL apt en nuestra lista de repositorios
+Actualizar el sistema
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a>terminal&gt; sudo apt-get update
+</span></code></pre></div></td></tr></table></div>
+Como regla general, para actualizar de una serie de lanzamientos a otra, vaya a la siguiente serie en lugar de omitir una serie. Por ejemplo, si actualmente estás ejecutando MySQL 5.5 y deseas actualizar a una serie más nueva, actualiza primero a MySQL 5.6 antes de actualizar a 5.7, y así sucesivamente.
+Actualizar con el siguiente comando:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a>terminal&gt; sudo apt-get install mysql-server
+</span></code></pre></div></td></tr></table></div>
+<p>Si hay que actualizar otros paquetes utilizar el mismo comando:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a>terminal&gt; sudo apt-get install packege-name
+</span></code></pre></div></td></tr></table></div>
+<p>Para saber el nombre delos paquetes instalados desde el repositorio APT de MySQL, use el siguiente comando:</p>
+<p><div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a>terminal&gt; dpkg -l | grep mysql | grep ii
+</span></code></pre></div></td></tr></table></div>
+<strong>Advertencia:</strong> Si realizas una actualización de todo el sistema mediante <strong><em>apt-get upgrade</em></strong> , solo la biblioteca MySQL y los paquetes de desarrollo se actualizan con versiones más recientes (si están disponibles). 
+Para actualizar otros componentes, incluido el servidor, el cliente, la suite de pruebas, etc., use el comando apt-get install.
+El servidor MySQL siempre se reinicia después de una actualización de APT. Antes de MySQL 8.0.16, ejecute <strong><em>mysql_upgrade</em></strong> después de que el servidor se reinicia para verificar y posiblemente resolver cualquier incompatibilidad entre los datos antiguos y el software actualizado. <strong><em>mysql_upgrade</em></strong> también realiza otras funciones; consulte <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-upgrade.html">mysql_upgrade</a>. A partir de MySQL 8.0.16, este paso no es necesario, ya que el servidor realiza todas las tareas previamente manejadas por <strong>mysql_upgrade</strong>.</p>
+<h3 id="eliminando-mysql-con-apt">Eliminando MySql con APT</h3>
+<p>Para desinstalar el servidor MySQL y los componentes relacionados que se han instalado usando el repositorio APT de MySQL, elimine el servidor MySQL y cualquier otro software que se haya instalado automáticamente usando los siguientes comandos:</p>
+<p><div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
+<span class="normal"><a href="#__codelineno-17-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a>terminal&gt; sudo apt-get remove mysql-server
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2"></a>terminal&gt; sudo apt-get autoremove
+</span></code></pre></div></td></tr></table></div>
+Para desinstalar otros paquetes instalados manualmente utilizar:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1"></a>terminal&gt; sudo apt-get remove package-name
+</span></code></pre></div></td></tr></table></div>
+<p>Para ver una lista de los paquetes que han instalado desde el repositorio APT de MySQL, use el siguiente comando:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a>terminal&gt; dpkg -l | grep mysql | grep ii
+</span></code></pre></div></td></tr></table></div>
+<h2 id="paquetes-disponibles-del-repositorio-apt-de-mysql">Paquetes disponibles del repositorio APT de Mysql</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Package Name</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">mysql-server</td>
+<td style="text-align: left;">Metapackage for installing the MySQL server</td>
+</tr>
+<tr>
+<td style="text-align: left;">mysql-community-server</td>
+<td style="text-align: left;">MySQL server</td>
+</tr>
+<tr>
+<td style="text-align: left;">mysql-client</td>
+<td style="text-align: left;">Metapackage for installing the MySQL client</td>
+</tr>
+<tr>
+<td style="text-align: left;">mysql-cluster-community-auto-installer *</td>
+<td style="text-align: left;">Auto installer for NDB Cluster</td>
+</tr>
+<tr>
+<td style="text-align: left;">mysql-cluster-community-client</td>
+<td style="text-align: left;">MySQL client for NDB Cluster</td>
+</tr>
+<tr>
+<td style="text-align: left;">mysql-cluster-community-data-node</td>
+<td style="text-align: left;">NDB Cluster data node</td>
+</tr>
+<tr>
+<td style="text-align: left;">mysql-cluster-community-java</td>
+<td style="text-align: left;">NDB Cluster Java drivers</td>
+</tr>
+<tr>
+<td style="text-align: left;">mysql-cluster-community-management-server</td>
+<td style="text-align: left;">NDB Cluster management node</td>
+</tr>
+<tr>
+<td style="text-align: left;">mysql-cluster-community-memcached</td>
+<td style="text-align: left;">NDB Cluster memcached server</td>
+</tr>
+<tr>
+<td style="text-align: left;">mysql-cluster-community-nodejs</td>
+<td style="text-align: left;">NDB Cluster Node.js adapters</td>
+</tr>
+<tr>
+<td style="text-align: left;">mysql-cluster-community-server</td>
+<td style="text-align: left;">MySQL server for NDB Cluster</td>
+</tr>
+<tr>
+<td style="text-align: left;">mysql-cluster-community-source</td>
+<td style="text-align: left;">Source package for NDB Cluster</td>
+</tr>
+<tr>
+<td style="text-align: left;">mysql-cluster-community-test</td>
+<td style="text-align: left;">NDB Cluster testsuite</td>
+</tr>
+<tr>
+<td style="text-align: left;">mysql-community-client</td>
+<td style="text-align: left;">MySQL client</td>
+</tr>
+<tr>
+<td style="text-align: left;">mysql-common</td>
+<td style="text-align: left;">MySQL database common files</td>
+</tr>
+<tr>
+<td style="text-align: left;">libmysqlclient21</td>
+<td style="text-align: left;">MySQL database client library</td>
+</tr>
+<tr>
+<td style="text-align: left;">libmysqlclient-dev</td>
+<td style="text-align: left;">MySQL database development files</td>
+</tr>
+<tr>
+<td style="text-align: left;">libmysqld-dev</td>
+<td style="text-align: left;">MySQL embedded database development files</td>
+</tr>
+<tr>
+<td style="text-align: left;">mysql-testsuite</td>
+<td style="text-align: left;">Metapackage for installing the MySQL test suite</td>
+</tr>
+<tr>
+<td style="text-align: left;">mysql-community-test</td>
+<td style="text-align: left;">MySQL test suite</td>
+</tr>
+<tr>
+<td style="text-align: left;">mysql-community-bench</td>
+<td style="text-align: left;">MySQL benchmark suite</td>
+</tr>
+<tr>
+<td style="text-align: left;">mysql-community-source</td>
+<td style="text-align: left;">MySQL source code</td>
+</tr>
+<tr>
+<td style="text-align: left;">mysql-workbench-community</td>
+<td style="text-align: left;">MySQL Workbench (not available for Debian platforms)</td>
+</tr>
+<tr>
+<td style="text-align: left;">mysql-connector-python-py3</td>
+<td style="text-align: left;">MySQL Connector/Python for supported Ubuntu versions with Python 3.2 or later</td>
+</tr>
+<tr>
+<td style="text-align: left;">mysql-connector-python</td>
+<td style="text-align: left;">MySQL Connector/Python for supported Debian versions with Python 2.6.3 or later, and for supported Ubuntu versions with Python 2.6.3 to 3.1</td>
+</tr>
+<tr>
+<td style="text-align: left;">mysql-router</td>
+<td style="text-align: left;">MySQL Router</td>
+</tr>
+<tr>
+<td style="text-align: left;">ndbclient</td>
+<td style="text-align: left;">NDB Cluster client</td>
+</tr>
+<tr>
+<td style="text-align: left;">ndbclient-dev</td>
+<td style="text-align: left;">NDB Cluster client development library</td>
+</tr>
+</tbody>
+</table>
+<h2 id="configuracion-y-pruebas-posteriores-a-la-instalacion">Configuración y pruebas posteriores a la instalación</h2>
+<p>Después de instalar MySQL, se debe inicializar el directorio de datos, incluidas las tablas en el esquema mysql del sistema:
+* Para algunos métodos de instalación de MySQL, la inicialización del directorio de datos es automática
+* Para otros métodos de instalación, se debe inicializar el directorio de datos manualmente. Estos incluyen la instalación desde distribuciones genéricas binarias y de origen en sistemas Unix y similares a Unix, y la instalación desde un paquete ZIP en Windows.
+En general, cuando instalamos desde un instalador (exe o msi en Windows o apt/yum en linux) la inicialización del directorio es automática. Cuando la instalación es mediante la copia de binarios o compilación hay que iniciar estos direcrtorios manualmente.</p>
+<h3 id="inicializacion-del-directorio-de-datos">Inicialización del directorio de datos</h3>
+<h4 id="descripcion-general-de-la-inicializacion">Descripción general de la inicialización</h4>
+<p>Esta sección describe cómo inicializar el directorio de datos manualmente para los métodos de instalación de MySQL para los cuales la inicialización del directorio de datos no es automática. 
+Advertencia.
+En MySQL 8.0, el complemento de autenticación predeterminado ha cambiado de <em>mysql_native_password</em> a <em>caching_sha2_password</em>, y la cuenta <em>'root'@'localhost'</em> administrativa utiliza <em>caching_sha2_password</em> de forma predeterminada. Si prefiere que la cuenta <strong>root</strong> utilice el complemento de autenticación predeterminado anterior ( mysql_native_password), consulte <a href="https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password-root-account">caching_sha2_password y la cuenta administrativa raíz</a>.
+Los pasos son los siguientes:
+* Cambiar la ubicación al nivel superior de instalación de mysql
+* Crear un directorio
+* Otorgar la propiedad de la carpeta al usuario y grupo mysql
+* Utilizar el servidor para inicializar el directorio de datos
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
+<span class="normal"><a href="#__codelineno-20-2">2</a></span>
+<span class="normal"><a href="#__codelineno-20-3">3</a></span>
+<span class="normal"><a href="#__codelineno-20-4">4</a></span>
+<span class="normal"><a href="#__codelineno-20-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1"></a>terminal&gt; cd /usr/local/mysql
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2"></a>terminal&gt; mkdir mysql-files
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3"></a>terminal&gt; chown mysql:mysql mysql-files
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4"></a>terminal&gt; chmod 750 mysql-files
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5"></a>terminal&gt; bin/mysqld --initialize --user=mysql
+</span></code></pre></div></td></tr></table></div>
+Si queremos implementar el soporte automático para conexiones seguras, hay que utilizar la tilidad <strong>mysql_ssl_rsa_etup</strong> para crear los archivos SSL y RSA respectivamente
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1"></a>terminal&gt;bin/mysql_ssl_rsa_setup
+</span></code></pre></div></td></tr></table></div></p>
+<h4 id="procedimiento-de-inicializacion-del-directorio-de-datos">Procedimiento de inicialización del directorio de datos</h4>
+<p>Cambiar la ubicación al nivel superior de instalación de mysql.
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1"></a>terminal&gt; cd /usr/local/mysql
+</span></code></pre></div></td></tr></table></div>
+Para inicializar el directorio de datos, invoque mysqld con la opción <em>--initialize</em> o <em>--initialize-insecure</em>, dependiendo de si desea que el servidor genere una contraseña inicial aleatoria para la cuenta 'root'@'localhost', o cree esa cuenta sin contraseña:</p>
+<ul>
+<li>
+<p>Use <em>--initialize</em> para la instalación "segura por defecto" (es decir, incluida la generación de una rootcontraseña inicial aleatoria). En este caso, la contraseña se marca como caducada y debe elegir una nueva.</p>
+</li>
+<li>
+<p>Con <em>--initialize-insecure</em>, no se genera ninguna contraseña para root. <strong>Esto es inseguro</strong>; se supone que tiene la intención de asignar una contraseña a la cuenta de manera oportuna antes de poner el servidor en uso de producción.</p>
+</li>
+</ul>
+<p>En sistemas Unix y similares a Unix, es importante que los directorios y archivos de la base de datos sean propiedad de la cuenta <em>mysql</em> de inicio de sesión para que el servidor tenga acceso de lectura y escritura a ellos cuando lo ejecute más tarde. Para garantizar esto inicia mysqld desde la cuenta root del sistema e incluye la opción <em>--user</em> como se muestra aquí:
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span>
+<span class="normal"><a href="#__codelineno-23-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1"></a>terminal&gt; bin/mysqld --initialize --user=mysql
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2"></a>terminal&gt; bin/mysqld --initialize-insecure --user=mysql
+</span></code></pre></div></td></tr></table></div></p>
+<p>Podría ser necesario especificar otras opciones, como <em>--basedir</em> o <em>--datadir</em> si mysqld no puede identificar las ubicaciones correctas para el directorio de instalación o el directorio de datos. Por ejemplo (ingrese el comando en una sola línea):
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span>
+<span class="normal"><a href="#__codelineno-24-2">2</a></span>
+<span class="normal"><a href="#__codelineno-24-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1"></a>terminal&gt; bin/mysqld --initialize --user=mysql
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2"></a>  --basedir=/opt/mysql/mysql
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3"></a>  --datadir=/opt/mysql/mysql/data
+</span></code></pre></div></td></tr></table></div>
+Alternativamente, coloca la configuración de opciones relevante en un archivo de opciones y pase el nombre de ese archivo a mysqld. Para sistemas Unix y similares a Unix, supon que el nombre del archivo de opciones es <em>/opt/mysql/mysql/etc/my.cnf.</em> Pon estas líneas en el archivo:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span>
+<span class="normal"><a href="#__codelineno-25-2">2</a></span>
+<span class="normal"><a href="#__codelineno-25-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1"></a>[mysqld]
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2"></a>basedir=/opt/mysql/mysql
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3"></a>datadir=/opt/mysql/mysql/data
+</span></code></pre></div></td></tr></table></div>
+<h4 id="acciones-en-el-servidor-durante-la-inicializacion-del-directorio-de-datos">Acciones en el servidor durante la inicialización del directorio de datos</h4>
+<p>Cuando se invoca con la opción <em>--initialize</em> o <em>--initialize-insecure</em>, mysqld realiza las siguientes acciones durante la secuencia de inicialización del directorio de datos:
+* El servidor verifica la existencia del directorio de datos (si no existe lo crea)
+* Si el directorio de datos existe pero no está vacio, el servidor se cierra después de producir un mensaje de error:
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1"></a>[ERROR] --initialize specified but the data directory exists. Aborting.
+</span></code></pre></div></td></tr></table></div>
+En este caso, elimine o cambie el nombre del directorio de datos y vuelva a intentarlo.
+Se permite que un directorio de datos existente no esté vacío si cada entrada tiene un nombre que comienza con un punto (.).
+* Dentro del directorio de datos el servidor crea el esquema de mysql y sus tablas, incluidas las tablas del diccionario de datos, las tablas de concesión, las tablas de zona horaria y las tablas de ayuda del lado del servidor.
+* El servidor inicializa el espacio de la tabla del sistema y las estructuras de datos relacionadas necesarias para administrar las tablas InnoDB
+* El servidor crea una cuenta 'root'@'localhost' de superusuario y otras cuentas reservadas
+    + Con <em>--initialize</em> pero sin <em>--initialize-insecure</em>, el servidor genera una contraseña aleatoria, la marca como caducada y escribe un mensaje que muestra la contraseña.</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>* Con *--initialize-insecure*, (ya sea con o sin --initialize porque --initialize-insecure implica --initialize), el servidor no genera una contraseña ni la marca caducada, y escribe un mensaje de advertencia:
+</code></pre></div></td></tr></table></div>
+<p><div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1">1</a></span>
+<span class="normal"><a href="#__codelineno-27-2">2</a></span>
+<span class="normal"><a href="#__codelineno-27-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1"></a>#initialice
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2"></a>[Warning] A temporary password is generated for root@localhost:
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3"></a>iTag*AfrH5ej
+</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span>
+<span class="normal"><a href="#__codelineno-28-2">2</a></span>
+<span class="normal"><a href="#__codelineno-28-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1"></a>#initialize-insecure
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2"></a>[Warning] root@localhost is created with an empty password ! Please
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3"></a>consider switching off the --initialize-insecure option.
+</span></code></pre></div></td></tr></table></div>
+* El servidor completa las tablas de ayuda del lado del servidor que se utilizan para la declaración HELP
+* Si se proporcionó la varianle <em>init_file</em>  del sistema para nombrar un archivo de sentencias SQL, el servidor ejecuta las sentencias en el archivo. Esta opción le permite realizar secuencias de arranque personalizadas.
+* Por último se cierra el servidor</p>
+<h4 id="asignacion-de-la-contrsena-root-posterior-a-la-inicializacion">Asignación de la contrseña root posterior a la inicialización</h4>
+<p>Estos son los pasos a seguir:
+* Iniciar el servidor
+* Conectarse al servidor
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1"></a>mysql -u root -p
+</span></code></pre></div></td></tr></table></div>
+* Luego, cuando se le solicite la contraseña, ingrese la contraseña aleatoria que generó el servidor durante la secuencia de inicialización:
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1"></a>Enter password: (enter the random root password here)
+</span></code></pre></div></td></tr></table></div>
+* Si inició con <em>--initialize-insecure</em> conectarse sin contraseña. Después de conectarse unse <strong>ALTER USER</strong> para generar una nueva contraseña. 
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1">1</a></span>
+<span class="normal"><a href="#__codelineno-31-2">2</a></span>
+<span class="normal"><a href="#__codelineno-31-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1"></a>mysql -u root --skip-password
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2"></a>...
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3"></a>mysql&gt; ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;root-password&#39;;
+</span></code></pre></div></td></tr></table></div></p>
+<h3 id="iniciar-el-servidor">Iniciar el servidor</h3>
+<p>Para iniciar el servidor:
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-32-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1"></a>terminal&gt; systemctl start mysqld
+</span></code></pre></div></td></tr></table></div>
+ó si la instalación incluye <em>mysqld_safe</em>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-33-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1"></a>terminal&gt; bin/mysqld_safe --user=mysql &amp;
+</span></code></pre></div></td></tr></table></div>
+Es importante que el servidor MySQL se ejecute con una cuenta root de inicio de sesión sin privilegios (sin ). Para garantizar esto, ejecute mysqld_safe como root e incluya la opción <em>--user</em> como se muestra. De lo contrario, debe ejecutar el programa mientras está conectado como mysql, en cuyo caso puede omitir la opción --user  del comando.</p>
+<h3 id="probar-el-servidor">Probar el servidor</h3>
+<p>Después de inicializar el directorio de datos y de haber iniciado el servidor, realizar algunas pruebas sencillas para asegurarse de que funciona satisfactoriamente. Esta sección asume que su ubicación actual es el directorio de instalación de MySQL y que tiene un subdirectorio bin que contiene los programas de MySQL usados ​​aquí. Si eso no es cierto, ajuste los nombres de la ruta de comando en consecuencia.</p>
+<p>Alternativamente, agregue el directorio bin a su configuración de variable de entorno PATH. Eso permite que su terminal (intérprete de comandos) encuentre programas MySQL correctamente, de modo que pueda ejecutar un programa escribiendo solo su nombre, no su nombre de ruta. </p>
+<p>Utilice <strong>mysqladmin</strong> para verificar que el servidor se esté ejecutando. Los siguientes comandos proporcionan pruebas simples para verificar si el servidor está funcionando y respondiendo a las conexiones:
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-34-1">1</a></span>
+<span class="normal"><a href="#__codelineno-34-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1"></a>terminal&gt; bin/mysqladmin version
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2"></a>terminal&gt; bin/mysqladmin variables
+</span></code></pre></div></td></tr></table></div>
+Si no puedes conectarte al servidor, especifica una opción <em>-u root</em> para conectarte. Si ya ha asignado una contraseña para la rootcuenta, también deberá especificar -p. Por ejemplo:
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-35-1">1</a></span>
+<span class="normal"><a href="#__codelineno-35-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1"></a>terminal&gt; bin/mysqladmin -u root -p version
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2"></a>Enter password: (enter root password here)
+</span></code></pre></div></td></tr></table></div>
+La salida debería ser similar a:
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-36-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-36-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-36-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-36-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-36-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-36-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-36-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-36-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-36-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-36-10">10</a></span>
+<span class="normal"><a href="#__codelineno-36-11">11</a></span>
+<span class="normal"><a href="#__codelineno-36-12">12</a></span>
+<span class="normal"><a href="#__codelineno-36-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1"></a>terminal&gt; bin/mysqladmin version
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2"></a>mysqladmin  Ver 14.12 Distrib 8.0.26, for pc-linux-gnu on i686
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3"></a>...
+</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4"></a>
+</span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5"></a>Server version          8.0.26
+</span><span id="__span-36-6"><a id="__codelineno-36-6" name="__codelineno-36-6"></a>Protocol version        10
+</span><span id="__span-36-7"><a id="__codelineno-36-7" name="__codelineno-36-7"></a>Connection              Localhost via UNIX socket
+</span><span id="__span-36-8"><a id="__codelineno-36-8" name="__codelineno-36-8"></a>UNIX socket             /var/lib/mysql/mysql.sock
+</span><span id="__span-36-9"><a id="__codelineno-36-9" name="__codelineno-36-9"></a>Uptime:                 14 days 5 hours 5 min 21 sec
+</span><span id="__span-36-10"><a id="__codelineno-36-10" name="__codelineno-36-10"></a>
+</span><span id="__span-36-11"><a id="__codelineno-36-11" name="__codelineno-36-11"></a>Threads: 1  Questions: 366  Slow queries: 0
+</span><span id="__span-36-12"><a id="__codelineno-36-12" name="__codelineno-36-12"></a>Opens: 0  Flush tables: 1  Open tables: 19
+</span><span id="__span-36-13"><a id="__codelineno-36-13" name="__codelineno-36-13"></a>Queries per second avg: 0.000
+</span></code></pre></div></td></tr></table></div>
+Verifique que puede apagar el servidor (incluya una opción -p si la cuenta root ya tiene una contraseña):
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-37-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1"></a>terminal&gt; bin/mysqladmin -u root shutdown
+</span></code></pre></div></td></tr></table></div></p>
+<p>Verifique que pueda iniciar el servidor nuevamente. Haga esto usando <em>mysqld_safe</em> o invocando <em>mysqld</em> directamente. Por ejemplo:</p>
+<p><div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-38-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1"></a>terminal&gt; bin/mysqld_safe --user=mysql &amp;
+</span></code></pre></div></td></tr></table></div>
+Utilice <em>mysqlshow</em> para ver qué bases de datos existen:
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-39-1">1</a></span>
+<span class="normal"><a href="#__codelineno-39-2">2</a></span>
+<span class="normal"><a href="#__codelineno-39-3">3</a></span>
+<span class="normal"><a href="#__codelineno-39-4">4</a></span>
+<span class="normal"><a href="#__codelineno-39-5">5</a></span>
+<span class="normal"><a href="#__codelineno-39-6">6</a></span>
+<span class="normal"><a href="#__codelineno-39-7">7</a></span>
+<span class="normal"><a href="#__codelineno-39-8">8</a></span>
+<span class="normal"><a href="#__codelineno-39-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1"></a>terminal&gt; bin/mysqlshow
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2"></a>+--------------------+
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3"></a>|     Databases      |
+</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4"></a>+--------------------+
+</span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5"></a>| information_schema |
+</span><span id="__span-39-6"><a id="__codelineno-39-6" name="__codelineno-39-6"></a>| mysql              |
+</span><span id="__span-39-7"><a id="__codelineno-39-7" name="__codelineno-39-7"></a>| performance_schema |
+</span><span id="__span-39-8"><a id="__codelineno-39-8" name="__codelineno-39-8"></a>| sys                |
+</span><span id="__span-39-9"><a id="__codelineno-39-9" name="__codelineno-39-9"></a>+--------------------+
+</span></code></pre></div></td></tr></table></div></p>
+<h3 id="asegurar-la-cuenta-inicial-de-mysql">Asegurar la cuenta inicial de MySQL</h3>
+<p>Esta sección describe cómo asignar una contraseña a la cuenta root inicial creada durante el procedimiento de instalación de MySQL, si aún no lo has hecho.</p>
+<p>Advertencia:
+* En todas las plataformas, la distribución de MySQL incluye mysql_secure_installation , una utilidad de línea de comandos que automatiza gran parte del proceso de asegurar una instalación de MySQL.</p>
+<p>Es posible que ya se haya asignado una contraseña a la cuenta inicial en las siguiente scircunstancias:
+* Las instalaciones que utilizan paquetes Debian le dan la opción de asignar una contraseña.
+* Para la inicialización del directorio de datos realizada manualmente usando <em>mysqld --initialize</em>, mysqld genera una contraseña aleatoria inicial, la marca como vencida y la escribe en el registro de errores del servidor.</p>
+<p>La tabla mysql.user de concesión define la cuenta de usuario inicial de MySQL y sus privilegios de acceso. La instalación de MySQL crea solo una cuenta <em>'root'@'localhost'</em>  de <strong>superusuario</strong> que tiene todos los privilegios y puede hacer cualquier cosa. Si la cuenta root tiene una contraseña vacía, la instalación de MySQL está desprotegida: cualquiera puede conectarse al servidor MySQL root sin una contraseña y recibir todos los privilegios.</p>
+<p>Para asignar una contraseña para la cuenat root MySQL inicial, utilice el siguiente procedimiento. Reemplace <strong>root-password</strong> en los ejemplos con la contraseña que desea usar.</p>
+<p>Si la cuenta root existe con una contraseña aleatoria inicial que ha caducado, conéctate al servidor usando root esa contraseña, luego elige una nueva contraseña. 
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-40-1">1</a></span>
+<span class="normal"><a href="#__codelineno-40-2">2</a></span>
+<span class="normal"><a href="#__codelineno-40-3">3</a></span>
+<span class="normal"><a href="#__codelineno-40-4">4</a></span>
+<span class="normal"><a href="#__codelineno-40-5">5</a></span>
+<span class="normal"><a href="#__codelineno-40-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1"></a>terminal&gt; mysql -u root -p
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2"></a>Enter password: (enter the random root password here)
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3"></a>Elija una nueva contraseña para reemplazar la contraseña aleatoria:
+</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4"></a>...
+</span><span id="__span-40-5"><a id="__codelineno-40-5" name="__codelineno-40-5"></a>...
+</span><span id="__span-40-6"><a id="__codelineno-40-6" name="__codelineno-40-6"></a>mysql&gt; ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;root-password&#39;;
+</span></code></pre></div></td></tr></table></div>
+Si la cuenta root existe pero no tiene contraseña, conéctate al servidor root sin usar contraseña, luego asigna una contraseña. Este es el caso si inicializó el directorio de datos usando <strong>mysqld --initialize-insecure</strong>.</p>
+<p>Conéctate al servidor root sin usar contraseña:
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-41-1">1</a></span>
+<span class="normal"><a href="#__codelineno-41-2">2</a></span>
+<span class="normal"><a href="#__codelineno-41-3">3</a></span>
+<span class="normal"><a href="#__codelineno-41-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1"></a>terminal&gt; mysql -u root --skip-password
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2"></a>Asignar una contraseña:
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3"></a>...
+</span><span id="__span-41-4"><a id="__codelineno-41-4" name="__codelineno-41-4"></a>mysql&gt; ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;root-password&#39;;
+</span></code></pre></div></td></tr></table></div></p>
+<h2 id="actualizacion-de-mysql">Actualización de mysql</h2>
+<h3 id="rutas-de-actualizacion">Rutas de actualización</h3>
+<ul>
+<li>
+<p>Se admite la actualización de MySQL 5.7 a 8.0. Sin embargo, la actualización solo se admite entre las versiones de disponibilidad general (GA). Para MySQL 8.0, es necesario que actualice desde una versión de MySQL 5.7 GA (5.7.9 o superior). No se admiten actualizaciones de versiones no GA de MySQL 5.7.</p>
+</li>
+<li>
+<p>Se recomienda actualizar a la última versión antes de actualizar a la siguiente versión. Por ejemplo, actualice a la última versión de MySQL 5.7 antes de actualizar a MySQL 8.0.</p>
+</li>
+<li>
+<p>No se admite la actualización que omite versiones. Por ejemplo, no se admite la actualización directa de MySQL 5.6 a 8.0.</p>
+</li>
+<li>
+<p>Una vez que una serie de lanzamientos alcanza el estado de Disponibilidad general (GA), se admite la actualización dentro de la serie de lanzamientos (de una versión GA a otra versión GA). Por ejemplo, actualizar desde MySQL 8.0.x a 8.0.y está apoyado. (No se admite la actualización que involucre versiones de estado de desarrollo que no sean de GA). También se admite la omisión de una versión. Por ejemplo, actualizar desde MySQL 8.0.x a 8.0.z está apoyado. MySQL 8.0.11 es la primera versión de estado GA dentro de la serie de versiones MySQL 8.0.</p>
+</li>
+</ul>
+<h3 id="que-actualiza-el-proceso-de-actualizacion-de-mysql">Qué actualiza el proceso de actualización de MySQL</h3>
+<p>La instalación de una nueva versión de MySQL puede requerir la actualización de estas partes de la instalación existente:
+* Paso 1: Actualización del diccionario de datos
+* Paso 2: Actualización del servidor</p>
+<p>La siguiente lista muestra los comandos de actualización anteriores a MySQL 8.0.16 y los comandos equivalentes para MySQL 8.0.16 y versiones posteriores:</p>
+<ul>
+<li>
+<p>Realice una actualización normal (pasos 1 y 2 según sea necesario):</p>
+<ul>
+<li>Antes de MySQL 8.0.16: [ <strong>mysqld</strong> ] seguido de [ <strong>mysql_upgrade</strong> ] </li>
+<li>A partir de MySQL 8.0.16: [ <strong>mysqld</strong> ]</li>
+</ul>
+</li>
+<li>
+<p>Realice solo el paso 1 según sea necesario:</p>
+<ul>
+<li>
+<p>Antes de MySQL 8.0.16: no es posible realizar todas las tareas de actualización descritas en el paso 1 excluyendo las descritas en el paso 2. Sin embargo, puede evitar actualizar los esquemas de usuario y el esquema <code>sys</code> usando [ <strong>mysqld</strong> ] seguido de [ <strong>mysql_upgrade</strong> ] con las opciones [<code>--upgrade-system-tables</code>] y [<code>--skip-sys-schema</code>].</p>
+</li>
+<li>
+<p>A partir de MySQL 8.0.16: [<strong>mysqld --upgrade = MINIMAL</strong>]</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Realice el paso 1 según sea necesario y fuerce el paso 2:</p>
+<ul>
+<li>
+<p>Antes de MySQL 8.0.16: [ <strong>mysqld</strong> ] seguido de [<strong>mysql_upgrade --force</strong>]</p>
+</li>
+<li>
+<p>A partir de MySQL 8.0.16: [<strong>mysqld --upgrade = FORCE</strong>]</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>### Actualización con el repositorio APT de MySQL</p>
+<ul>
+<li>
+<p>Antes de realizar cualquier actualización a MySQL, siga cuidadosamente las instrucciones en [Actualización de MySQL]. Entre otras instrucciones discutidas allí, <em>es especialmente importante hacer una copia de seguridad de su base de datos antes de la actualización</em> .</p>
+</li>
+<li>
+<p>Las siguientes instrucciones asumen que MySQL se ha instalado en su sistema usando el repositorio APT de MySQL; si ese no es el caso, siga las instrucciones que se dan en [Reemplazo de una distribución nativa de MySQL usando el repositorio APT de MySQL] o [Reemplazo de un servidor MySQL instalado por una descarga directa del paquete deb]. También tenga en cuenta que no puede usar el repositorio APT de MySQL para actualizar una distribución de MySQL que haya instalado desde un repositorio de software no nativo (por ejemplo, de MariaDB o Percona).</p>
+</li>
+<li>
+<p>Aseguresé de que tiene el repositorio APT de MySQL en la lista de repositiorios de su sistema</p>
+</li>
+<li>Asegurarte de que tienes la información del paquete más actualizado
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-42-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1"></a>terminal&gt; sudo apt-get update
+</span></code></pre></div></td></tr></table></div></li>
+<li>Utilice el comando:</li>
+</ul>
+<p><div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-43-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1"></a>terminal&gt; apt-get install mysql-server
+</span></code></pre></div></td></tr></table></div>
+4. Para acutlizar cualquier otro paquete:
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-44-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1"></a>terminal&gt; apt-get install package-name
+</span></code></pre></div></td></tr></table></div>
+5. Para ver los nombres de los paquetes intalados
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-45-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1"></a>terminal&gt; dpkg -l | grep mysql | grep ii
+</span></code></pre></div></td></tr></table></div>
+6. El servidor se reiniciará después de una actualización. Antes de MySQL 8.0.16, ejecute mysql_upgrade después de que el servidor se reinicie para verificar y posiblemente resolver cualquier incompatibilidad entre los datos antiguos y el software actualizado. A partir de MySQL 8.0.16, este paso no es necesario, ya que el servidor realiza todas las tareas previamente manejadas por mysql_upgrade.</p>
+<h2 id="uso-de-imagen-docker-para-mysql">Uso de imagen Docker para MySql</h2>
+<h3 id="descargar-la-imagen-de-docker">Descargar la imagen de Docker</h3>
+<p>Para descargar la imagen de Docker de MySQL, ejecute el siguiente comando:</p>
+<p><div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-46-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1"></a>terminal&gt; docker pull mysql/mysql-server:tag
+</span></code></pre></div></td></tr></table></div>
+Donde <strong>tag</strong> es la versión de la imagen de MySQL que desea descargar. Por ejemplo, para descargar la imagen de MySQL 8.0, ejecute el siguiente comando:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-47-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1"></a>terminal&gt; docker pull mysql/mysql-server:8.0
+</span></code></pre></div></td></tr></table></div>
+<h3 id="iniciar-un-contenedor-de-docker-con-mysql">Iniciar un contenedor de Docker con MySQL</h3>
+<p>Para iniciar un contenedor de Docker con MySQL, ejecute el siguiente comando:</p>
+<p><div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-48-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1"></a>terminal&gt; docker run --name=mysql-container -e MYSQL_ROOT_PASSWORD=root-password -d mysql/mysql-server:tag
+</span></code></pre></div></td></tr></table></div>
+Donde <strong>mysql-container</strong> es el nombre del contenedor, <strong>root-password</strong> es la contraseña de root de MySQL y <strong>tag</strong> es la versión de la imagen de MySQL que desea utilizar. Por ejemplo, para iniciar un contenedor de Docker con MySQL 8.0 y la contraseña de root <strong>root</strong>, ejecute el siguiente comando:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-49-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1"></a>terminal&gt; docker run --name=mysql-container -e MYSQL_ROOT_PASSWORD=root -d mysql/mysql-server:8.0
+</span></code></pre></div></td></tr></table></div>
+<h3 id="conectarse-al-contenedor-de-docker-con-mysql">Conectarse al contenedor de Docker con MySQL</h3>
+<p>Para conectarse al contenedor de Docker con MySQL, ejecute el siguiente comando:</p>
+<p><div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-50-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1"></a>terminal&gt; docker exec -it mysql-container mysql -uroot -p
+</span></code></pre></div></td></tr></table></div>
+Donde <strong>mysql-container</strong> es el nombre del contenedor. Se le pedirá que ingrese la contraseña de root de MySQL. Una vez que haya ingresado la contraseña, se conectará al servidor MySQL en el contenedor de Docker.</p>
+<h3 id="detener-y-eliminar-el-contenedor-de-docker-con-mysql">Detener y eliminar el contenedor de Docker con MySQL</h3>
+<p>Para detener el contenedor de Docker con MySQL, ejecute el siguiente comando:</p>
+<p><div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-51-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1"></a>terminal&gt; docker stop mysql-container
+</span></code></pre></div></td></tr></table></div>
+Para eliminar el contenedor de Docker con MySQL, ejecute el siguiente comando:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-52-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1"></a>terminal&gt; docker rm mysql-container
+</span></code></pre></div></td></tr></table></div>
+<h3 id="persistencia-de-datos-en-contenedores-de-docker">Persistencia de datos en contenedores de Docker</h3>
+<p>Para persistir los datos en un contenedor de Docker con MySQL, puede montar un volumen de Docker en el contenedor. Para hacer esto, agregue la opción <strong>-v</strong> al comando <strong>docker run</strong>. Por ejemplo, para montar un volumen de Docker en el contenedor de MySQL, ejecute el siguiente comando:</p>
+<p><div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-53-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-53-1"><a id="__codelineno-53-1" name="__codelineno-53-1"></a>terminal&gt; docker run --name=mysql-container -e MYSQL_ROOT_PASSWORD=root -v /path/to/mysql-data:/var/lib/mysql -d mysql/mysql-server:8.0
+</span></code></pre></div></td></tr></table></div>
+Donde <strong>/path/to/mysql-data</strong> es la ruta en su sistema host donde desea almacenar los datos de MySQL. Esto montará el volumen en el directorio <strong>/var/lib/mysql</strong> en el contenedor de Docker, lo que permitirá que los datos de MySQL persistan incluso si el contenedor se detiene o se elimina.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright - Sebastian Ciscar - Professor Departament d'Informàtica IES Jaume II el Just (Tavernes de la Valldigna)
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "content.code.copy", "content.code.annotate", "content.code.select", "navigation.footer"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copiat al porta-retalls", "clipboard.copy": "C\u00f2pia al porta-retalls", "search.result.more.one": "1 m\u00e9s en aquesta p\u00e0gina", "search.result.more.other": "# m\u00e9s en aquesta p\u00e0gina", "search.result.none": "Cap document coincideix", "search.result.one": "1 document coincident", "search.result.other": "# documents coincidents", "search.result.placeholder": "Escriu per a comen\u00e7ar a cercar", "search.result.term.missing": "Desaparegut", "select.version": "Selecciona la versi\u00f3"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+    
+  </body>
+</html>
