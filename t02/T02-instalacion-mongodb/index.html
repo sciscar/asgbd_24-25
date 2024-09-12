@@ -590,15 +590,15 @@
 <p>Para instalar MongoDB en un sistema Linux, primero debemos descargar el archivo binario de MongoDB desde el sitio web oficial de MongoDB. A continuación, descomprimimos el archivo binario y movemos el directorio de MongoDB a la ubicación deseada.</p>
 <div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
 <span class="normal"><a href="#__codelineno-0-2">2</a></span>
-<span class="normal"><a href="#__codelineno-0-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>$<span class="w"> </span>wget<span class="w"> </span>https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-4.4.6.tgz
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>$<span class="w"> </span>tar<span class="w"> </span>-xvzf<span class="w"> </span>mongodb-linux-x86_64-4.4.6.tgz
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>$<span class="w"> </span>mv<span class="w"> </span>mongodb-linux-x86_64-4.4.6<span class="w"> </span>/usr/local/mongodb
+<span class="normal"><a href="#__codelineno-0-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>wget<span class="w"> </span>https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-4.4.6.tgz
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>tar<span class="w"> </span>-xvzf<span class="w"> </span>mongodb-linux-x86_64-4.4.6.tgz
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>mv<span class="w"> </span>mongodb-linux-x86_64-4.4.6<span class="w"> </span>/usr/local/mongodb
 </span></code></pre></div></td></tr></table></div>
 <h2 id="instalacion-utilizando-el-administrador-de-paquetes">Instalación utilizando el administrador de paquetes</h2>
 <p>MongoDB también se puede instalar utilizando el administrador de paquetes de la distribución de Linux. A continuación se muestra cómo instalar MongoDB en Ubuntu utilizando el administrador de paquetes apt.</p>
 <div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
-<span class="normal"><a href="#__codelineno-1-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>mongodb
+<span class="normal"><a href="#__codelineno-1-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>mongodb
 </span></code></pre></div></td></tr></table></div>
 <h3 id="directorios-de-mongodb">directorios de MongoDB</h3>
 <p>MongoDB utiliza varios directorios para almacenar datos, registros y archivos de configuración. A continuación se muestra una lista de los directorios utilizados por MongoDB:</p>
@@ -631,23 +631,23 @@
 <h2 id="iniciar-el-servicio-de-mongodb">Iniciar el servicio de MongoDB</h2>
 <p>Para iniciar el servicio de MongoDB, primero debemos crear el directorio de datos de MongoDB y luego iniciar el servicio de MongoDB utilizando el comando mongod.</p>
 <div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
-<span class="normal"><a href="#__codelineno-2-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>$<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/data/db
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>$<span class="w"> </span>/usr/local/mongodb/bin/mongod
+<span class="normal"><a href="#__codelineno-2-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>/data/db
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>/usr/local/mongodb/bin/mongod
 </span></code></pre></div></td></tr></table></div>
 <p>También podemos iniciar el servicio de MongoDB utilizando el administrador de servicios systemctl.</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>mongodb
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>mongodb
 </span></code></pre></div></td></tr></table></div>
 <h2 id="detener-el-servicio-de-mongodb">Detener el servicio de MongoDB</h2>
 <p>Podemos detener el servicio de MongoDB utilizando el comando mongod --shutdown.</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a>$<span class="w"> </span>/usr/local/mongodb/bin/mongod<span class="w"> </span>--shutdown
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a>/usr/local/mongodb/bin/mongod<span class="w"> </span>--shutdown
 </span></code></pre></div></td></tr></table></div>
 <p>Mediante systemctl</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>mongodb
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>mongodb
 </span></code></pre></div></td></tr></table></div>
 <h2 id="conexion-a-mongodb">Conexión a MongoDB</h2>
 <p>Para conectarse a MongoDB, primero debemos iniciar el shell de MongoDB utilizando el comando mongo. A continuación, podemos conectarnos a la base de datos de MongoDB utilizando el comando use <database_name>.</p>
 <div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
-<span class="normal"><a href="#__codelineno-6-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>$<span class="w"> </span>/usr/local/mongodb/bin/mongo
+<span class="normal"><a href="#__codelineno-6-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>/usr/local/mongodb/bin/mongo
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>&gt;<span class="w"> </span>use<span class="w"> </span>testdb
 </span></code></pre></div></td></tr></table></div>
 <h2 id="crear-usuario-administrador">Crear usuario administrador</h2>
@@ -661,7 +661,7 @@
 <span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
 <span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
 <span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-7-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a>$<span class="w"> </span>/usr/local/mongodb/bin/mongo
+<span class="normal"><a href="#__codelineno-7-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a>/usr/local/mongodb/bin/mongo
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a>&gt;<span class="w"> </span>use<span class="w"> </span>admin
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a>&gt;<span class="w"> </span>db.createUser
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="o">(</span>
@@ -675,17 +675,17 @@
 <h1 id="imagen-de-mongodb-en-docker">Imagen de MongoDB en docker</h1>
 <p>Para ejecutar una instancia de MongoDB en un contenedor de Docker, primero debemos descargar la imagen oficial de MongoDB desde Docker Hub y luego ejecutar el contenedor de MongoDB utilizando el comando docker run.</p>
 <div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
-<span class="normal"><a href="#__codelineno-8-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a>$<span class="w"> </span>docker<span class="w"> </span>pull<span class="w"> </span>mongo
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">27017</span>:27017<span class="w"> </span>--name<span class="w"> </span>mongodb<span class="w"> </span>mongo
+<span class="normal"><a href="#__codelineno-8-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>mongo
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">27017</span>:27017<span class="w"> </span>--name<span class="w"> </span>mongodb<span class="w"> </span>mongo
 </span></code></pre></div></td></tr></table></div>
 <h2 id="persistencia-de-datos">Persistencia de datos</h2>
 <p>Para persistir los datos de MongoDB en un contenedor de Docker, podemos montar un volumen de Docker en el directorio de datos de MongoDB utilizando la opción -v.</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">27017</span>:27017<span class="w"> </span>-v<span class="w"> </span>/data/db:/data/db<span class="w"> </span>--name<span class="w"> </span>mongodb<span class="w"> </span>mongo
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">27017</span>:27017<span class="w"> </span>-v<span class="w"> </span>/data/db:/data/db<span class="w"> </span>--name<span class="w"> </span>mongodb<span class="w"> </span>mongo
 </span></code></pre></div></td></tr></table></div>
 <h2 id="conexion-a-mongodb-en-docker">Conexión a MongoDB en Docker</h2>
 <p>Para conectarse a la instancia de MongoDB en un contenedor de Docker, primero debemos iniciar el shell de MongoDB utilizando el comando docker exec y luego conectarnos a la base de datos de MongoDB utilizando el comando mongo.</p>
 <div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
-<span class="normal"><a href="#__codelineno-10-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a>$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>mongodb<span class="w"> </span>mongo
+<span class="normal"><a href="#__codelineno-10-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>mongodb<span class="w"> </span>mongo
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a>&gt;<span class="w"> </span>use<span class="w"> </span>testdb
 </span></code></pre></div></td></tr></table></div>
 <h1 id="probar-la-conexion-a-mongodb">Probar la conexión a MongoDB</h1>
@@ -695,7 +695,7 @@
 <span class="normal"><a href="#__codelineno-11-3">3</a></span>
 <span class="normal"><a href="#__codelineno-11-4">4</a></span>
 <span class="normal"><a href="#__codelineno-11-5">5</a></span>
-<span class="normal"><a href="#__codelineno-11-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a>$<span class="w"> </span>/usr/local/mongodb/bin/mongo
+<span class="normal"><a href="#__codelineno-11-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a>/usr/local/mongodb/bin/mongo
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a>&gt;<span class="w"> </span>use<span class="w"> </span>testdb
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a>&gt;<span class="w"> </span>db.createCollection<span class="o">(</span><span class="s2">&quot;users&quot;</span><span class="o">)</span>
 </span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a>&gt;<span class="w"> </span>db.users.insert<span class="o">({</span>name:<span class="w"> </span><span class="s2">&quot;Alice&quot;</span>,<span class="w"> </span>age:<span class="w"> </span><span class="m">30</span><span class="o">})</span>
@@ -716,7 +716,7 @@
 <span class="normal"><a href="#__codelineno-12-10">10</a></span>
 <span class="normal"><a href="#__codelineno-12-11">11</a></span>
 <span class="normal"><a href="#__codelineno-12-12">12</a></span>
-<span class="normal"><a href="#__codelineno-12-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a>$<span class="w"> </span>/usr/local/mongodb/bin/mongo
+<span class="normal"><a href="#__codelineno-12-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a>/usr/local/mongodb/bin/mongo
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a>&gt;<span class="w"> </span>use<span class="w"> </span>admin
 </span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a>&gt;<span class="w"> </span>db.createUser
 </span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="o">(</span>
