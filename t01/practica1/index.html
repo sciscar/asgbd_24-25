@@ -1,0 +1,1175 @@
+
+<!doctype html>
+<html lang="ca" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../T01-Instalacion-mysql/">
+      
+      
+        <link rel="next" href="../../t02/T02-instalacion-mongodb/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>Pràctica - Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bcfcd587.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#objectiu-de-la-practica" class="md-skip">
+          Salta el contingut
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Capçalera">
+    <a href="../.." title="Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar" class="md-header__button md-logo" aria-label="Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Pràctica
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Format oscur"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Format oscur" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Format clar"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Format clar" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestanyes" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../presentacio/Guia_Alumne_asgbd/" class="md-tabs__link">
+        
+  
+    
+  
+  INICI
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../aws/aws/" class="md-tabs__link">
+        
+  
+    
+  
+  AWS
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../T01-Instalacion-mysql/" class="md-tabs__link">
+          
+  
+  UD1
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../t02/T02-instalacion-mongodb/" class="md-tabs__link">
+          
+  
+  UD2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../arxius/arxius/" class="md-tabs__link">
+          
+  
+  Arxius
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegació" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar" class="md-nav__button md-logo" aria-label="Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../presentacio/Guia_Alumne_asgbd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    INICI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aws/aws/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AWS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    UD1
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            UD1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../T01-Instalacion-mysql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Teoria
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Pràctica
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Pràctica
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Taula de continguts">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Taula de continguts
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ra1-implanta-sistemes-gestors-de-bases-de-dades-analitzant-les-seves-caracteristiques-i-ajustant-se-als-requeriments-del-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      RA1: Implanta sistemes gestors de bases de dades analitzant les seves característiques i ajustant-se als requeriments del sistema.
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RA1: Implanta sistemes gestors de bases de dades analitzant les seves característiques i ajustant-se als requeriments del sistema.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ca" class="md-nav__link">
+    <span class="md-ellipsis">
+      CA:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ra2-configura-el-sistema-gestor-de-bases-de-dades-interpretant-les-especificacions-tecniques-i-els-requisits-dexplotacio" class="md-nav__link">
+    <span class="md-ellipsis">
+      RA2: Configura el sistema gestor de bases de dades interpretant les especificacions tècniques i els requisits d'explotació.
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RA2: Configura el sistema gestor de bases de dades interpretant les especificacions tècniques i els requisits d'explotació.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ca_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      CA:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ra3-parcial-implanta-metodes-de-control-dacces-utilitzant-assistents-eines-grafiques-i-comandaments-del-llenguatge-del-sgbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      RA3 (parcial): Implanta mètodes de control d'accés utilitzant assistents, eines gràfiques i comandaments del llenguatge del SGBD.
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RA3 (parcial): Implanta mètodes de control d'accés utilitzant assistents, eines gràfiques i comandaments del llenguatge del SGBD.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ca_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      CA:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    UD2
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            UD2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../t02/T02-instalacion-mongodb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Teoria
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arxius
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Arxius
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arxius/arxius/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tattoo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Taula de continguts">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Taula de continguts
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ra1-implanta-sistemes-gestors-de-bases-de-dades-analitzant-les-seves-caracteristiques-i-ajustant-se-als-requeriments-del-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      RA1: Implanta sistemes gestors de bases de dades analitzant les seves característiques i ajustant-se als requeriments del sistema.
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RA1: Implanta sistemes gestors de bases de dades analitzant les seves característiques i ajustant-se als requeriments del sistema.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ca" class="md-nav__link">
+    <span class="md-ellipsis">
+      CA:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ra2-configura-el-sistema-gestor-de-bases-de-dades-interpretant-les-especificacions-tecniques-i-els-requisits-dexplotacio" class="md-nav__link">
+    <span class="md-ellipsis">
+      RA2: Configura el sistema gestor de bases de dades interpretant les especificacions tècniques i els requisits d'explotació.
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RA2: Configura el sistema gestor de bases de dades interpretant les especificacions tècniques i els requisits d'explotació.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ca_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      CA:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ra3-parcial-implanta-metodes-de-control-dacces-utilitzant-assistents-eines-grafiques-i-comandaments-del-llenguatge-del-sgbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      RA3 (parcial): Implanta mètodes de control d'accés utilitzant assistents, eines gràfiques i comandaments del llenguatge del SGBD.
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RA3 (parcial): Implanta mètodes de control d'accés utilitzant assistents, eines gràfiques i comandaments del llenguatge del SGBD.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ca_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      CA:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<p>Pràctica 1: Instal·lació i Configuració Avançada de MySQL Server</p>
+<h1 id="objectiu-de-la-practica">Objectiu de la pràctica</h1>
+<p>Aquesta pràctica té com a objectiu avaluar els següents Resultats d'Aprenentatge (RA) i Criteris d'Avaluació (CA):</p>
+<h2 id="ra1-implanta-sistemes-gestors-de-bases-de-dades-analitzant-les-seves-caracteristiques-i-ajustant-se-als-requeriments-del-sistema">RA1: Implanta sistemes gestors de bases de dades analitzant les seves característiques i ajustant-se als requeriments del sistema.</h2>
+<h3 id="ca">CA:</h3>
+<ul>
+<li>a) Reconeixement de la utilitat i funció dels elements d'un SGBD.</li>
+<li>b) Anàlisi de les característiques dels principals SGBD.</li>
+<li>c) Selecció del SGBD adequat.</li>
+<li>d) Identificació del programari necessari per a la instal·lació.</li>
+<li>e) Verificació dels requisits hardware.</li>
+<li>f) Instal·lació del SGBD.</li>
+<li>g) Documentació del procés d'instal·lació.</li>
+<li>h) Interpretació dels missatges d'error i fitxers de registre.</li>
+<li>i) Resolució d'incidències durant la instal·lació.</li>
+<li>j) Verificació del funcionament del SGBD.</li>
+</ul>
+<h2 id="ra2-configura-el-sistema-gestor-de-bases-de-dades-interpretant-les-especificacions-tecniques-i-els-requisits-dexplotacio">RA2: Configura el sistema gestor de bases de dades interpretant les especificacions tècniques i els requisits d'explotació.</h2>
+<h3 id="ca_1">CA:</h3>
+<ul>
+<li>a) Descripció de les condicions d'inici i parada del SGBD.</li>
+<li>b) Selecció del motor de base de dades.</li>
+<li>c) Assegurament dels comptes d'administració.</li>
+<li>d) Configuració de les eines i programari client.</li>
+<li>e) Configuració de la connectivitat en xarxa.</li>
+<li>f) Definició de les característiques per defecte de les bases de dades.</li>
+<li>g) Definició dels paràmetres relatius a les connexions.</li>
+<li>h) Documentació del procés de configuració.</li>
+</ul>
+<h2 id="ra3-parcial-implanta-metodes-de-control-dacces-utilitzant-assistents-eines-grafiques-i-comandaments-del-llenguatge-del-sgbd">RA3 (parcial): Implanta mètodes de control d'accés utilitzant assistents, eines gràfiques i comandaments del llenguatge del SGBD.</h2>
+<h3 id="ca_2">CA:</h3>
+<ul>
+<li>c) Definició i eliminació de comptes d'usuari.</li>
+<li>h) Garantia del compliment dels requisits de seguretat.</li>
+</ul>
+<h1 id="descripcio-de-la-practica">Descripció de la pràctica</h1>
+<p>L'objectiu és realitzar la instal·lació i configuració avançada de MySQL Server en un entorn amb múltiples màquines virtuals, seguint els passos detallats a continuació, i documentant tot el procés en format Markdown.</p>
+<h1 id="tasques-a-realitzar">Tasques a realitzar</h1>
+<h2 id="preparacio-de-lentorn-amb-multiples-maquines">Preparació de l'entorn amb múltiples màquines:</h2>
+<ol>
+<li>Crea dues màquines virtuals amb sistema operatiu Linux (per exemple, Ubuntu Server).</li>
+<li>Verifica la connectivitat entre les màquines.</li>
+</ol>
+<h2 id="analisi-i-seleccio-del-sgbd">Anàlisi i selecció del SGBD:</h2>
+<ol>
+<li>Investiga les diferents versions disponibles de MySQL Server i selecciona la més adequada segons els requeriments del sistema i les característiques necessàries.</li>
+<li>Justifica la teva elecció en base a factors com estabilitat, compatibilitat i funcionalitats.</li>
+</ol>
+<h2 id="preparacio-del-sistema">Preparació del sistema:</h2>
+<ol>
+<li>Verifica els requisits hardware i software necessaris per a la instal·lació de MySQL Server.</li>
+</ol>
+<h2 id="installacio-de-mysql-server">Instal·lació de MySQL Server:</h2>
+<ol>
+<li>Instal·la MySQL Server en cada màquina virtual, en una per mig de apt o apt-get. en laltra per mig de docker.</li>
+<li>Inicia el servei de MySQL i verifica que s'està executant correctament.</li>
+<li>Documenta el procés d'instal·lació, incloent les comandes utilitzades i captures de pantalla del terminal.</li>
+</ol>
+<h2 id="configuracio-avancada-del-sgbd">Configuració avançada del SGBD:</h2>
+<h3 id="canvi-del-port-de-mysql">Canvi del port de MySQL:</h3>
+<ol>
+<li>En la maquina que has instal.lat per docker, canvia el port de MySQL a un valor diferent del port per defecte (3306).</li>
+<li>Reinicia el servei i verifica que MySQL està escoltant al nou port.</li>
+</ol>
+<h3 id="configuracio-de-la-connectivitat-en-xarxa">Configuració de la connectivitat en xarxa:</h3>
+<ol>
+<li>Configura MySQL per permetre connexions remotes des de l'altra màquina.</li>
+<li>Assegura't que el servidor està escoltant en totes les interfícies de xarxa (<code>bind-address</code>).</li>
+<li>La maquina que has instal.lat per apt o apt-get, configura MySQL per NO permetre connexions remotes.</li>
+<li>La maquina de docker, configura MySQL per permetre connexions remotes.</li>
+</ol>
+<h3 id="utilitzacio-de-lscript-mysql_secure_installation">Utilització de l'script <code>mysql_secure_installation</code>:</h3>
+<ol>
+<li>Executa l'script <code>mysql_secure_installation</code> per millorar la seguretat de la instal·lació de MySQL en la màquina que has instal.lat per apt o apt-get.</li>
+<li>Documenta les opcions seleccionades durant l'execució de l'script.</li>
+</ol>
+<h2 id="gestio-de-comptes-dusuari-i-permisos">Gestió de comptes d'usuari i permisos:</h2>
+<ol>
+<li>Crea un usuari en cada servidor MySQL que tingui permís per connectar-se des de l'altra màquina.</li>
+<li>Assigna els privilegis necessaris per accedir com a root.</li>
+<li>Documenta els comandos SQL utilitzats per crear els usuaris i assignar els permisos.</li>
+</ol>
+<h2 id="verificacio-de-la-connectivitat-entre-maquines">Verificació de la connectivitat entre màquines:</h2>
+<ol>
+<li>Des de cada màquina, i desde el teu host, connecta't al servidor MySQL de l'altra màquina utilitzant l'usuari creat.</li>
+<li>Utilitza les comandes necessaries per realitzar la connexió.</li>
+<li>Executa consultes bàsiques per verificar l'accés a la base de dades.</li>
+</ol>
+<h1 id="documentacio-del-proces">Documentació del procés:</h1>
+<p>Elabora un document en format Markdown que inclogui tots els passos realitzats, les comandes utilitzades, captures de pantalla (o còpies del terminal) i explicacions clares. Inclou una secció de resolució d'incidències on expliquis els problemes trobats i com els has solucionat. Finalitza amb unes conclusions personals sobre l'experiència i els coneixements adquirits.</p>
+<h1 id="materials-necessaris">Materials necessaris</h1>
+<ul>
+<li>Dues màquines virtuals amb sistema operatiu Linux (preferiblement Ubuntu Server).</li>
+<li>Programari de virtualització (VirtualBox, VMware, etc.).</li>
+<li>Connexió a Internet per descarregar els paquets i documentació necessària.</li>
+<li>Accés a una compte d'usuari amb permisos d'administrador (root) a les màquines Linux.</li>
+<li>Documentació oficial de MySQL i recursos del Tema 01.</li>
+</ul>
+<h1 id="lliurament">Lliurament</h1>
+<h2 id="format">Format:</h2>
+<p>Document en Markdown (.md) amb el desenvolupament complet de la pràctica.</p>
+<h2 id="contingut-del-document">Contingut del document:</h2>
+<ul>
+<li><strong>Títol i introducció</strong>: Nom de l'alumne, assignatura, títol de la pràctica i data.</li>
+<li><strong>Índex de continguts</strong>.</li>
+<li><strong>Introducció</strong>: Objectius de la pràctica i breu descripció del que es farà.</li>
+<li><strong>Desenvolupament</strong>: Explicació detallada de cada tasca realitzada, amb comandes, captures de pantalla (inserides en el Markdown) i explicacions.</li>
+<li><strong>Resolució d'incidències</strong>: Descripció dels problemes trobats i solucions aplicades.</li>
+<li><strong>Conclusions</strong>: Reflexió personal sobre l'activitat i aprenentatges obtinguts.</li>
+<li><strong>Bibliografia i fonts consultades</strong>.</li>
+</ul>
+<h2 id="nom-del-fitxer">Nom del fitxer:</h2>
+<p><code>Practica1_NomCognoms.md</code></p>
+<h2 id="data-de-lliurament">Data de lliurament:</h2>
+<p>[Especificar data de lliurament]</p>
+<h1 id="avaluacio">Avaluació</h1>
+<p>L'avaluació es basarà en els següents aspectes:</p>
+<h2 id="assoliment-dels-resultats-daprenentatge-i-criteris-davaluacio">Assoliment dels Resultats d'Aprenentatge i Criteris d'Avaluació:</h2>
+<h3 id="ra1-i-ca-associats">RA1 i CA associats:</h3>
+<ul>
+<li>Capacitat per reconèixer i explicar la utilitat i funció dels elements de MySQL Server.</li>
+<li>Anàlisi i justificació de la selecció de la versió de MySQL.</li>
+<li>Identificació correcta del programari i requisits necessaris.</li>
+<li>Realització efectiva de la instal·lació en múltiples màquines.</li>
+<li>Documentació detallada del procés d'instal·lació.</li>
+<li>Interpretació i resolució d'errors durant la instal·lació.</li>
+<li>Verificació del funcionament del SGBD en ambdues màquines.</li>
+</ul>
+<h3 id="ra2-i-ca-associats">RA2 i CA associats:</h3>
+<ul>
+<li>Descripció clara de les condicions d'inici i parada del servei MySQL.</li>
+<li>Configuració adequada del port i connectivitat en xarxa.</li>
+<li>Assegurament efectiu dels comptes d'administració utilitzant <code>mysql_secure_installation</code>.</li>
+<li>Configuració correcta de les eines i programari client.</li>
+<li>Definició dels paràmetres relatius a les connexions.</li>
+<li>Documentació completa del procés de configuració.</li>
+</ul>
+<h3 id="ra3-parcial-i-ca-associats">RA3 (parcial) i CA associats:</h3>
+<ul>
+<li>Creació i gestió de comptes d'usuari amb privilegis adequats per a l'accés remot.</li>
+<li>Aplicació de mesures per garantir la seguretat del sistema gestor.</li>
+</ul>
+<h2 id="qualitat-de-la-documentacio">Qualitat de la documentació:</h2>
+<ul>
+<li>Claredat i organització del document en format Markdown.</li>
+<li>Precisió tècnica i ús correcte del llenguatge.</li>
+<li>Inclusió de captures de pantalla o còpies del terminal pertinents.</li>
+<li>Ús adequat de la sintaxi Markdown per a una presentació clara.</li>
+</ul>
+<h2 id="resolucio-dincidencies">Resolució d'incidències:</h2>
+<ul>
+<li>Capacitat per identificar problemes durant la instal·lació i configuració.</li>
+<li>Eficàcia en la recerca i aplicació de solucions.</li>
+</ul>
+<h2 id="conclusions">Conclusions:</h2>
+<ul>
+<li>Reflexió sobre els coneixements adquirits i dificultats superades.</li>
+<li>Valoració personal de l'experiència.</li>
+</ul>
+<h1 id="orientacions-per-a-lalumne">Orientacions per a l'alumne</h1>
+<h2 id="planificacio">Planificació:</h2>
+<ul>
+<li>Organitza bé el temps per a realitzar la pràctica, deixant marge per a possibles incidències.</li>
+<li>Assegura't que les màquines virtuals tenen els recursos necessaris (memòria, disc dur, etc.).</li>
+</ul>
+<h2 id="documentacio">Documentació:</h2>
+<ul>
+<li>Documenta tots els passos que realitzis, encara que semblin senzills.</li>
+<li>Utilitza la sintaxi Markdown per estructurar el document (títols, subtítols, codi, llistes, etc.).</li>
+<li>Pots utilitzar eines com Visual Studio Code o Typora per editar Markdown.</li>
+</ul>
+<h2 id="seguretat">Seguretat:</h2>
+<ul>
+<li>Posa especial atenció en la configuració de la seguretat, especialment en obrir l'accés remot a MySQL.</li>
+<li>Assegura que les contrasenyes són robustes i que els usuaris tenen els privilegis mínims necessaris.</li>
+</ul>
+<h2 id="proves-i-verificacions">Proves i verificacions:</h2>
+<ul>
+<li>Després de cada canvi, realitza proves per verificar que tot funciona correctament.</li>
+<li>Si tens dubtes durant la realització de la pràctica, consulta la documentació oficial o altres recursos fiables.</li>
+</ul>
+<h2 id="revisio">Revisió:</h2>
+<ul>
+<li>Revisa el document abans de lliurar-lo, assegurant-te que està ben estructurat i que no conté errors ortogràfics o tècnics.</li>
+<li>Verifica que les captures de pantalla s'inclouen correctament en el Markdown.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Tasca \ RA</th>
+<th>RA1</th>
+<th>RA2</th>
+<th>RA3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>a)</td>
+<td>b)</td>
+<td>c)</td>
+</tr>
+<tr>
+<td>Tasca 1</td>
+<td>100%</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tasca 2</td>
+<td></td>
+<td>100%</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>Tasca 3</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tasca 4</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tasca 5</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tasca 6</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tasca 7</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tasca 8</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="llegenda">Llegenda:</h2>
+<h3 id="ra1">RA1:</h3>
+<ul>
+<li>CA a) Reconeixement de la utilitat i funció dels elements d'un SGBD.</li>
+<li>CA b) Anàlisi de les característiques dels principals SGBD.</li>
+<li>CA c) Selecció del SGBD adequat.</li>
+<li>CA d) Identificació del programari necessari per a la instal·lació.</li>
+<li>CA e) Verificació dels requisits hardware.</li>
+<li>CA f) Instal·lació del SGBD.</li>
+<li>CA g) Documentació del procés d'instal·lació.</li>
+<li>CA h) Interpretació dels missatges d'error i fitxers de registre.</li>
+<li>CA i) Resolució d'incidències durant la instal·lació.</li>
+<li>CA j) Verificació del funcionament del SGBD.</li>
+</ul>
+<h3 id="ra2">RA2:</h3>
+<ul>
+<li>CA a) Descripció de les condicions d'inici i parada del SGBD.</li>
+<li>CA b) Selecció del motor de base de dades.</li>
+<li>CA c) Assegurament dels comptes d'administració.</li>
+<li>CA d) Configuració de les eines i programari client.</li>
+<li>CA e) Configuració de la connectivitat en xarxa.</li>
+<li>CA f) Definició de les característiques per defecte de les bases de dades.</li>
+<li>CA g) Definició dels paràmetres relatius a les connexions.</li>
+<li>CA h) Documentació del procés de configuració.</li>
+</ul>
+<h3 id="ra3-parcial">RA3 (parcial):</h3>
+<ul>
+<li>CA c) Definició i eliminació de comptes d'usuari.</li>
+<li>CA h) Garantia del compliment dels requisits de seguretat.</li>
+</ul>
+<h2 id="explicacio-de-lassignacio-de-percentatges">Explicació de l'assignació de percentatges:</h2>
+<ul>
+<li><strong>Criteris coberts per una sola tasca</strong>: S'ha assignat el 100% a la tasca corresponent. Exemple: CA a) de RA1 és cobert únicament per la Tasca 1, per tant, s'assigna el 100% a aquesta tasca.</li>
+<li><strong>Criteris coberts per dues tasques</strong>: S'ha dividit el percentatge entre les tasques que el cobreixen. Exemple: CA g) de RA1 és cobert per les Tasques 4 i 8; s'assigna el 50% a cadascuna.</li>
+</ul>
+<h2 id="observacions">Observacions:</h2>
+<h3 id="ra1_1">RA1:</h3>
+<ul>
+<li>CA g), CA h) i CA i) són criteris coberts per les Tasques 4 i 8, per tant, s'ha assignat un 50% a cada tasca.</li>
+<li>La resta de criteris de RA1 són coberts per una única tasca i tenen un 100% assignat.</li>
+</ul>
+<h3 id="ra2_1">RA2:</h3>
+<ul>
+<li>CA c) (Assegurament dels comptes d'administració) és cobert per les Tasques 5 i 6; s'assigna un 50% a cadascuna.</li>
+<li>CA e) (Configuració de la connectivitat en xarxa) és cobert per les Tasques 5 i 7; s'assigna un 50% a cadascuna.</li>
+<li>CA h) (Documentació del procés de configuració) és cobert únicament per la Tasca 8; s'assigna el 100%.</li>
+</ul>
+<h3 id="ra3">RA3:</h3>
+<ul>
+<li>CA c) (Definició i eliminació de comptes d'usuari) és cobert únicament per la Tasca 6; s'assigna el 100%.</li>
+<li>CA h) (Garantia del compliment dels requisits de seguretat) és cobert per les Tasques 5 i 6; s'assigna un 50% a cadascuna.</li>
+</ul>
+<h2 id="com-utilitzar-aquesta-taula">Com utilitzar aquesta taula:</h2>
+<ul>
+<li><strong>Avaluació dels criteris</strong>: Aquesta taula permet veure quines tasques cobreixen cada criteri d'avaluació i amb quin percentatge. Això facilita l'avaluació del grau d'assoliment de cada criteri per part de l'alumne en funció de les tasques realitzades.</li>
+<li><strong>Planificació de l'estudi</strong>: Els alumnes poden utilitzar aquesta taula per assegurar-se que, en realitzar les tasques assignades, estan cobrint tots els criteris d'avaluació necessaris per assolir els resultats d'aprenentatge.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Peu de pàgina" >
+        
+          
+          <a href="../T01-Instalacion-mysql/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Teoria">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Teoria
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../t02/T02-instalacion-mongodb/" class="md-footer__link md-footer__link--next" aria-label="Següent: Teoria">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Següent
+              </span>
+              <div class="md-ellipsis">
+                Teoria
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright - Sebastian Ciscar - Professor Departament d'Informàtica IES Jaume II el Just (Tavernes de la Valldigna)
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "content.code.copy", "content.code.annotate", "content.code.select", "navigation.footer"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copiat al porta-retalls", "clipboard.copy": "C\u00f2pia al porta-retalls", "search.result.more.one": "1 m\u00e9s en aquesta p\u00e0gina", "search.result.more.other": "# m\u00e9s en aquesta p\u00e0gina", "search.result.none": "Cap document coincideix", "search.result.one": "1 document coincident", "search.result.other": "# documents coincidents", "search.result.placeholder": "Escriu per a comen\u00e7ar a cercar", "search.result.term.missing": "Desaparegut", "select.version": "Selecciona la versi\u00f3"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+    
+  </body>
+</html>
