@@ -716,6 +716,30 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#docker-compose-para-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Compose para MySQL
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Compose para MySQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crear-un-archivo-docker-composeyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crear un archivo docker-compose.yml
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1198,6 +1222,30 @@
   <a href="#persistencia-de-datos-en-contenedores-de-docker" class="md-nav__link">
     <span class="md-ellipsis">
       Persistencia de datos en contenedores de Docker
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-compose-para-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Compose para MySQL
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Compose para MySQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crear-un-archivo-docker-composeyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crear un archivo docker-compose.yml
     </span>
   </a>
   
@@ -1870,6 +1918,59 @@ Para eliminar el contenedor de Docker con MySQL, ejecute el siguiente comando:</
 <p><div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-53-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-53-1"><a id="__codelineno-53-1" name="__codelineno-53-1"></a> docker run --name=mysql-container -e MYSQL_ROOT_PASSWORD=root -v /path/to/mysql-data:/var/lib/mysql -d mysql/mysql-server:8.0
 </span></code></pre></div></td></tr></table></div>
 Donde <strong>/path/to/mysql-data</strong> es la ruta en su sistema host donde desea almacenar los datos de MySQL. Esto montará el volumen en el directorio <strong>/var/lib/mysql</strong> en el contenedor de Docker, lo que permitirá que los datos de MySQL persistan incluso si el contenedor se detiene o se elimina.</p>
+<h2 id="docker-compose-para-mysql">Docker Compose para MySQL</h2>
+<h3 id="crear-un-archivo-docker-composeyml">Crear un archivo docker-compose.yml</h3>
+<p>Para usar Docker Compose con MySQL, primero debe crear un archivo <strong>docker-compose.yml</strong> que defina la configuración de su contenedor de MySQL. Aquí hay un ejemplo de un archivo <strong>docker-compose.yml</strong> que define un contenedor de MySQL:</p>
+<div class="language-yaml highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-54-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-54-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-54-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-54-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-54-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-54-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-54-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-54-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-54-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-54-10">10</a></span>
+<span class="normal"><a href="#__codelineno-54-11">11</a></span>
+<span class="normal"><a href="#__codelineno-54-12">12</a></span>
+<span class="normal"><a href="#__codelineno-54-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-54-1"><a id="__codelineno-54-1" name="__codelineno-54-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.1&#39;</span>
+</span><span id="__span-54-2"><a id="__codelineno-54-2" name="__codelineno-54-2"></a>
+</span><span id="__span-54-3"><a id="__codelineno-54-3" name="__codelineno-54-3"></a><span class="nt">services</span><span class="p">:</span>
+</span><span id="__span-54-4"><a id="__codelineno-54-4" name="__codelineno-54-4"></a><span class="w">  </span><span class="nt">mysql</span><span class="p">:</span>
+</span><span id="__span-54-5"><a id="__codelineno-54-5" name="__codelineno-54-5"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql/mysql-server</span>
+</span><span id="__span-54-6"><a id="__codelineno-54-6" name="__codelineno-54-6"></a><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql-container</span>
+</span><span id="__span-54-7"><a id="__codelineno-54-7" name="__codelineno-54-7"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+</span><span id="__span-54-8"><a id="__codelineno-54-8" name="__codelineno-54-8"></a><span class="w">      </span><span class="nt">MYSQL_ROOT_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
+</span><span id="__span-54-9"><a id="__codelineno-54-9" name="__codelineno-54-9"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--default-authentication-plugin=mysql_native_password</span>
+</span><span id="__span-54-10"><a id="__codelineno-54-10" name="__codelineno-54-10"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-54-11"><a id="__codelineno-54-11" name="__codelineno-54-11"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;3306:3306&quot;</span>
+</span><span id="__span-54-12"><a id="__codelineno-54-12" name="__codelineno-54-12"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-54-13"><a id="__codelineno-54-13" name="__codelineno-54-13"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/path/to/mysql-data:/var/lib/mysql</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-yaml highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-55-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-55-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-55-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-55-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-55-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-55-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-55-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-55-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-55-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-55-10">10</a></span>
+<span class="normal"><a href="#__codelineno-55-11">11</a></span>
+<span class="normal"><a href="#__codelineno-55-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-55-1"><a id="__codelineno-55-1" name="__codelineno-55-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.1&#39;</span>
+</span><span id="__span-55-2"><a id="__codelineno-55-2" name="__codelineno-55-2"></a>
+</span><span id="__span-55-3"><a id="__codelineno-55-3" name="__codelineno-55-3"></a><span class="nt">services</span><span class="p">:</span>
+</span><span id="__span-55-4"><a id="__codelineno-55-4" name="__codelineno-55-4"></a><span class="w">  </span><span class="nt">mysql</span><span class="p">:</span>
+</span><span id="__span-55-5"><a id="__codelineno-55-5" name="__codelineno-55-5"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mariadb</span>
+</span><span id="__span-55-6"><a id="__codelineno-55-6" name="__codelineno-55-6"></a><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql-container</span>
+</span><span id="__span-55-7"><a id="__codelineno-55-7" name="__codelineno-55-7"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+</span><span id="__span-55-8"><a id="__codelineno-55-8" name="__codelineno-55-8"></a><span class="w">      </span><span class="nt">MYSQL_ROOT_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
+</span><span id="__span-55-9"><a id="__codelineno-55-9" name="__codelineno-55-9"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-55-10"><a id="__codelineno-55-10" name="__codelineno-55-10"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;3306:3306&quot;</span>
+</span><span id="__span-55-11"><a id="__codelineno-55-11" name="__codelineno-55-11"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-55-12"><a id="__codelineno-55-12" name="__codelineno-55-12"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/path/to/mysql-data:/var/lib/mysql</span>
+</span></code></pre></div></td></tr></table></div>
 
 
 
