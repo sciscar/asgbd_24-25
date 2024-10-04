@@ -1,0 +1,55 @@
+/* @theme el_meu_tema */
+@import 'gaia';
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f4e0;
+    padding: 1em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #333;
+}
+
+h1 {
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 0.3em;
+}
+
+h2, h3, h4, h5, h6 {
+    color: #666;
+    margin-top: 2em;
+}
+
+p {
+    margin-bottom: 1.6em;
+}
+
+ul, ol {
+    padding-left: 2em;
+    margin-bottom: 1.6em;
+}
+
+code {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f9f9f9;
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    border-radius: 6px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: #0087C3;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

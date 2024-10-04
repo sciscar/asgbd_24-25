@@ -1,0 +1,67 @@
+site_name: Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar
+nav:
+  - Inici: index.md
+  - UD2: 't01/T01-Instalacion-mysql.md'
+  - UD3: 't02/T02-instalacion-mongodb.md'
+  
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - content.code.copy
+  language: ca
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/brightness-7 
+
+
+        name: Format oscur
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Format clar
+  features:
+    - navigation.tabs
+    - content.code.copy
+    - content.code.annotate
+    - content.code.select
+    - navigation.footer
+  theme:
+    extra_javascript: "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+    icon:
+      admonition:
+        note: fontawesome/solid/note-sticky
+        abstract: fontawesome/solid/book
+        info: fontawesome/solid/circle-info
+        tip: fontawesome/solid/bullhorn
+        success: fontawesome/solid/check
+        question: fontawesome/solid/circle-question
+        warning: fontawesome/solid/triangle-exclamation
+        failure: fontawesome/solid/bomb
+        danger: fontawesome/solid/skull
+        bug: fontawesome/solid/robot
+        example: fontawesome/solid/flask
+        quote: fontawesome/solid/quote-left
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      linenums: true
+      auto_title: true
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - attr_list
+copyright: Copyright - Sebastian Ciscar - Professor Departament d'Informàtica IES Jaume II el Just (Tavernes de la Valldigna)
+extra:
+  generator: false
+plugins:
+    - with-pdf
+    

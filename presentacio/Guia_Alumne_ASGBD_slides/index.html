@@ -1,0 +1,768 @@
+
+<!doctype html>
+<html lang="ca" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>Presentació del mòdul ASGBD - Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bcfcd587.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#presentacio-del-modul-asgbd" class="md-skip">
+          Salta el contingut
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Capçalera">
+    <a href="../.." title="Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar" class="md-header__button md-logo" aria-label="Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Presentació del mòdul ASGBD
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Format oscur"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Format oscur" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Format clar"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Format clar" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestanyes" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Guia_Alumne_ASGBD/" class="md-tabs__link">
+        
+  
+    
+  
+  INICI
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../aws/aws.md" class="md-tabs__link">
+        
+  
+    
+  
+  AWS
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../t01/T01-Instalacion-mysql/" class="md-tabs__link">
+          
+  
+  UD1
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../t02/T02-instalacion-mongodb/" class="md-tabs__link">
+          
+  
+  UD2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../arxius/arxius.md" class="md-tabs__link">
+          
+  
+  Arxius
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegació" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar" class="md-nav__button md-logo" aria-label="Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Administracio de Sistemes Gestors de Bases de Dades - Sebastian Ciscar
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Guia_Alumne_ASGBD/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    INICI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aws/aws.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AWS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    UD1
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            UD1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../t01/T01-Instalacion-mysql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Teoria
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../t01/practica1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pràctica
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    UD2
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            UD2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../t02/T02-instalacion-mongodb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Instalacio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../t02/NoSQL.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Teoria
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arxius
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Arxius
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arxius/arxius.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tattoo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Taula de continguts">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="presentacio-del-modul-asgbd">Presentació del mòdul ASGBD</h1>
+<p><img alt="bg opacity:30%" src="../img/fondo_portada_slides.webp" /></p>
+<hr />
+<p>El mòdul d'Administració de Sistemes Gestors de Bases de Dades (ASGBD) pertany al 2on curs del CFGS d'Administració de Sistemes Informàtics en Xarxa. Aquest mòdul està dissenyat per dotar els alumnes de les habilitats necessàries per a l'administració, configuració i manteniment de bases de dades, així com per garantir la seguretat i integritat de la informació.</p>
+<h1 id="continguts-del-modul-unitats-didactiques">Continguts del mòdul. Unitats didàctiques</h1>
+<p><img alt="bg right:35%" src="../img/fondo_portada_slides.webp" /></p>
+<hr />
+<ul>
+<li>
+<p><strong>UD 1. Instal·lació de MySQL Server (3 hores)</strong><br />
+    Aprendràs a instal·lar i configurar un servidor MySQL, crear bases de dades i gestionar taules, així com una introducció als procediments emmagatzemats.</p>
+</li>
+<li>
+<p><strong>UD 2. MongoDB (3 hores)</strong><br />
+    Coneixeràs les bases de dades NoSQL amb MongoDB i la seva aplicació en la gestió d'informació no estructurada. També integrarem MongoDB en aplicacions web.</p>
+</li>
+<li>
+<p><strong>UD 3. AWS i Bases de Dades en el Núvol (3 hores)</strong><br />
+    Introducció als serveis de bases de dades en el núvol amb AWS, configuració d'AWS RDS, DynamoDB i S3, i pràctiques amb aquests serveis.</p>
+</li>
+</ul>
+<hr />
+<ul>
+<li>
+<p><strong>UD 4. Administració del Servidor MySQL (9 hores)</strong><br />
+    Configuració avançada del servidor MySQL, gestió de variables del sistema, estadístiques, i la implementació de procediments emmagatzemats i funcions.</p>
+</li>
+<li>
+<p><strong>UD 5. Usuaris, Permisos i Rols (9 hores)</strong><br />
+    Creació i gestió d'usuaris a MySQL, assignació de permisos i rols, i la implementació de mesures de seguretat per protegir les dades.</p>
+</li>
+<li>
+<p><strong>UD 6. Còpies de Seguretat (9 hores)</strong><br />
+    Coneixeràs els diferents tipus de còpies de seguretat, estratègies efectives per fer còpies i la restauració de dades en MySQL.</p>
+</li>
+</ul>
+<hr />
+<ul>
+<li>
+<p><strong>UD 7. Rèpliques en Bases de Dades (9 hores)</strong><br />
+    Introducció a les rèpliques en bases de dades MySQL, configuració de servidors mestre-rèplica, i pràctiques de rèpliques i recuperació de dades.</p>
+</li>
+<li>
+<p><strong>UD 8. Procediments Emmagatzemats (9 hores)</strong><br />
+    Creació i gestió de procediments emmagatzemats a MySQL, amb aplicacions pràctiques i implementació en casos reals.</p>
+</li>
+</ul>
+<h2 id="material-didactic">Material Didàctic</h2>
+<p><img alt="bg right:50%" src="../img/material.webp" /></p>
+<hr />
+<ul>
+<li>Apunts proporcionats pel professor.</li>
+<li>Textos d'ampliació i enllaços a articles i documentació oficial relacionats amb cada unitat.</li>
+<li>Pràctiques i exercicis resolts per reforçar el que s'ha exposat als apunts.</li>
+</ul>
+<hr />
+<p>Tot aquest material s'oferirà a través de l'aula virtual durant el desenvolupament de cada unitat.</p>
+<p>A més, dins l'aula virtual, disposarem d'un fòrum general per comentar aspectes globals del mòdul, i un fòrum per cada unitat didàctica, per tal deresoldre dubtes i tractar aspectes relacionats amb la unitat.</p>
+<h2 id="programari">Programari</h2>
+<p>El programari a utilitzar serà principalment lliure, i es donaran instruccions en cada unitat per a la seua descàrrega i instal·lació:</p>
+<ul>
+<li><strong>Kubuntu 24.04</strong> com a sistema operatiu de base utilitzat a l'aula. No obstant això, l'alumne pot utilitzar qualsevol altre sistema operatiu, ja que tot el programari amb què treballarem és multiplataforma.</li>
+</ul>
+<hr />
+<ul>
+<li><strong>MySQL Server</strong>, com a sistema gestor de bases de dades relacional.</li>
+<li><strong>MongoDB</strong>, com a sistema gestor de bases de dades NoSQL.</li>
+<li><strong>AWS</strong>, com a entorn per desplegar maquines virtuals i bases de dades en el núvol.</li>
+<li><strong>Docker</strong>, com a contenidor d'aplicacions.</li>
+</ul>
+<h3 id="eines-web-i-collaboratives">Eines web i col·laboratives</h3>
+<p>A banda del programari esmentat anteriorment, també s'utilitzaran el següent portals web i plataformes de treball col·laboratiu:</p>
+<ul>
+<li><strong>Portals Aules</strong>: Com a aula virtual, i que articularà el funcionament del mòdul. Serà aci on s'ubiquen els diferents recursos, fòrums, etc.</li>
+<li><strong>MS Teams</strong>:El nostre centre és <em>Centre Digital Col·laboratiu</em>, pel que cada alumne i professor disposa d'una identitat digital que li proporciona accés a tota la suite d'enies d'Office 365. Entre aquestes, la que utilitzarem de forma més freqüent serà <em>MS Teams</em>, a través de la qual s'organitzaran les diferents tutoríes .</li>
+</ul>
+<hr />
+<ul>
+<li><strong>Github</strong>: En alguns projectes en grup, serà de gran ajuda treballar amb sistemes de control de versions distribuits, com <em>Github</em> o <em>Gitlab</em>, de manera que puguen realitzar desenvolupaments de forma col·laborativa.</li>
+</ul>
+<h2 id="metodologia">Metodologia</h2>
+<p><img alt="bg right:50%" src="../img/metodologia.webp" /></p>
+<hr />
+<p>Per a cada unitat disposareu de la teoría, projectes i exemples pràctics, i d'orientacions per tal de realitzar les activitats pràctiques que se us plantegen, així com enllaços a documentació addicional i complementària per a les activitats d'ampliació.</p>
+<p>En línies generals, la manera de treballar en cada unitat serà la següent:</p>
+<ul>
+<li>En iniciar cada unitat didàtica es realitzarà una presentació inicial d'aquesta, dels conceptes bàsics, i de què seran capaços de fer en finalitzar-la.</li>
+</ul>
+<hr />
+<ul>
+<li>Disposareu del material per a la seua lectura comprensiva i estudi</li>
+<li>
+<p>També disposareu de documentació addicional per ampliar o puntualitzar allò exposat a classe.</p>
+</li>
+<li>
+<p>Se us proporcionaran exercicis i pràctiques guiades que acompanyen la teoría de la unitat i que us ajudaran a entendre els conceptes de la unitat.</p>
+</li>
+<li>També es realitzaran activitats i pràctiques de consolidació i reforç</li>
+</ul>
+<hr />
+<ul>
+<li><strong>Aspectes a tindre en compte</strong><ul>
+<li>Tingueu en compte que l'aula virtual és el nostre espai principal d'interactuació i coordinació, de manera que:<ul>
+<li><strong>Utilitzeu els fòrums</strong>. Aquests poden ser un mecanisme molt profitós per resoldre dubtes, i crear un <em>coneixement col·lectiu</em>. Consulteu-los regularment, ja que és possible que algun dubte que us sorgisca, l'haja tingut prèviament algun company, i ja disposeu d'una solució o aclariment, bé per part del professor o d'algun company. De la mateixa manera, si teniu algun dubte general, o necessiteu algun aclariment susceptible de deixar alfòrum, no dubteu en fer-ho, ja que podeu ajudar també altres companys.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="avaluacio">Avaluació</h1>
+<p><img alt="bg right:50%" src="../img/avaluacio.webp" /></p>
+<hr />
+<ul>
+<li><strong>Avaluació continuada</strong>: Consisteix al seguiment i realització de les <em>Activitats Pràctiques d’Avaluació Continuada (APACs)</em>, que suposaran un 60% de la nota final, junt amb tests de cada unitat (10%) més la realització d’una prova de validació el dia de la convocatòria, amb un pes del 30%, i que versarà sobre les Activitats d’Avaluació Continuada realitzades. Per tal de poder obtenir la nota mitjana de l’avaluació, caldrà haver obtingut una qualificació d’un 5 en cadascuna de les parts.</li>
+</ul>
+<hr />
+<p>Si no supereu la part d’Avaluació Continuada, caldrà realitzar l’examen de l’avaluació. La nota de l’avaluació continuada serà la mitjana ponderada de cada <em>Activitat Pràctica d’Avaluació Continuada</em> enfunció de les hores dedicades a cadascuna.</p>
+<hr />
+<h2 id="examen-davaluacio-parcials-si-no-sopta-per-lavaluacio-continuada-o-aquesta-no-es-supera-amb-la-nota-minima-podeu-realitzar-lexamen-de-lavaluacio-consistent-en-un-exercici-de-caracter-practic-sobre-tot-el-temari-vist-fins-el-moment-de-la-prova-en-cas-de-no-superar-la-prova-de-validacio-de-lavaluacio-continuada-o-lexamen-davaluacio-parcial-corresponent-disposareu-dun-examen-a-final-de-curs-la-nota-del-modul-sera-doncs-la-nota-daquesta-prova-final-a-mes-disposeu-duna-convocatoria-extraordinaria-el-mes-de-juny-si-no-shan-superat-les-avaluacions-anteriors">* <strong>Examen d’avaluació (Parcials)</strong>: Si no s’opta per l’avaluació continuada o aquesta no es supera amb la nota mínima, podeu realitzar l’examen de l’avaluació, consistent en un exercici de caràcter pràctic sobre tot el temari vist fins el moment de la prova. En cas de no superar la prova de validació de l’avaluació continuada o l’examen d’avaluació parcial corresponent, disposareu d’un examen a final de curs. La nota del mòdul, serà doncs la nota d’aquesta prova final. A més, disposeu d’una convocatòria extraordinària el mes de juny si no s’han superat les avaluacions anteriors.</h2>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright - Sebastian Ciscar - Professor Departament d'Informàtica IES Jaume II el Just (Tavernes de la Valldigna)
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "content.code.copy", "content.code.annotate", "content.code.select", "navigation.footer"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copiat al porta-retalls", "clipboard.copy": "C\u00f2pia al porta-retalls", "search.result.more.one": "1 m\u00e9s en aquesta p\u00e0gina", "search.result.more.other": "# m\u00e9s en aquesta p\u00e0gina", "search.result.none": "Cap document coincideix", "search.result.one": "1 document coincident", "search.result.other": "# documents coincidents", "search.result.placeholder": "Escriu per a comen\u00e7ar a cercar", "search.result.term.missing": "Desaparegut", "select.version": "Selecciona la versi\u00f3"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+    
+  </body>
+</html>
