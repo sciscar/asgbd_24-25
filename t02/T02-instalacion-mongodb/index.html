@@ -957,57 +957,78 @@
 <span class="normal"><a href="#__codelineno-7-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>mongo
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">27017</span>:27017<span class="w"> </span>--name<span class="w"> </span>mongodb<span class="w"> </span>mongo
 </span></code></pre></div></td></tr></table></div>
+<h1 id="docker-compose">Docker-compose</h1>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a>version:<span class="w"> </span><span class="s1">&#39;3.1&#39;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a>services:
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">  </span>mongo:
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="w">    </span>image:<span class="w"> </span>mongo
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="w">    </span>restart:<span class="w"> </span>always
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="w">    </span>environment:
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="w">      </span>MONGO_INITDB_ROOT_USERNAME:<span class="w"> </span>root
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="w">      </span>MONGO_INITDB_ROOT_PASSWORD:<span class="w"> </span>example
+</span></code></pre></div></td></tr></table></div>
 <h2 id="persistencia-de-datos">Persistencia de datos</h2>
 <p>Para persistir los datos de MongoDB en un contenedor de Docker, podemos montar un volumen de Docker en el directorio de datos de MongoDB utilizando la opción -v.</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">27017</span>:27017<span class="w"> </span>-v<span class="w"> </span>/data/db:/data/db<span class="w"> </span>--name<span class="w"> </span>mongodb<span class="w"> </span>mongo
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">27017</span>:27017<span class="w"> </span>-v<span class="w"> </span>/data/db:/data/db<span class="w"> </span>--name<span class="w"> </span>mongodb<span class="w"> </span>mongo
 </span></code></pre></div></td></tr></table></div>
 <h2 id="conexion-a-mongodb-en-docker">Conexión a MongoDB en Docker</h2>
 <p>Para conectarse a la instancia de MongoDB en un contenedor de Docker, primero debemos iniciar el shell de MongoDB utilizando el comando docker exec y luego conectarnos a la base de datos de MongoDB utilizando el comando mongo.</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
-<span class="normal"><a href="#__codelineno-9-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>mongodb<span class="w"> </span>mongo
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a>&gt;<span class="w"> </span>use<span class="w"> </span>testdb
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>mongodb<span class="w"> </span>mongo
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a>&gt;<span class="w"> </span>use<span class="w"> </span>testdb
 </span></code></pre></div></td></tr></table></div>
 <h1 id="probar-la-conexion-a-mongodb">Probar la conexión a MongoDB</h1>
 <p>Para probar la conexión a MongoDB, podemos crear una base de datos y una colección en MongoDB y luego insertar algunos documentos en la colección.</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
-<span class="normal"><a href="#__codelineno-10-2">2</a></span>
-<span class="normal"><a href="#__codelineno-10-3">3</a></span>
-<span class="normal"><a href="#__codelineno-10-4">4</a></span>
-<span class="normal"><a href="#__codelineno-10-5">5</a></span>
-<span class="normal"><a href="#__codelineno-10-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a>/usr/local/mongodb/bin/mongo
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a>&gt;<span class="w"> </span>use<span class="w"> </span>testdb
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a>&gt;<span class="w"> </span>db.createCollection<span class="o">(</span><span class="s2">&quot;users&quot;</span><span class="o">)</span>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a>&gt;<span class="w"> </span>db.users.insert<span class="o">({</span>name:<span class="w"> </span><span class="s2">&quot;Alice&quot;</span>,<span class="w"> </span>age:<span class="w"> </span><span class="m">30</span><span class="o">})</span>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a>&gt;<span class="w"> </span>db.users.insert<span class="o">({</span>name:<span class="w"> </span><span class="s2">&quot;Bob&quot;</span>,<span class="w"> </span>age:<span class="w"> </span><span class="m">25</span><span class="o">})</span>
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a>&gt;<span class="w"> </span>db.users.find<span class="o">()</span>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span>
+<span class="normal"><a href="#__codelineno-11-5">5</a></span>
+<span class="normal"><a href="#__codelineno-11-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a>/usr/local/mongodb/bin/mongo
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a>&gt;<span class="w"> </span>use<span class="w"> </span>testdb
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a>&gt;<span class="w"> </span>db.createCollection<span class="o">(</span><span class="s2">&quot;users&quot;</span><span class="o">)</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a>&gt;<span class="w"> </span>db.users.insert<span class="o">({</span>name:<span class="w"> </span><span class="s2">&quot;Alice&quot;</span>,<span class="w"> </span>age:<span class="w"> </span><span class="m">30</span><span class="o">})</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a>&gt;<span class="w"> </span>db.users.insert<span class="o">({</span>name:<span class="w"> </span><span class="s2">&quot;Bob&quot;</span>,<span class="w"> </span>age:<span class="w"> </span><span class="m">25</span><span class="o">})</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a>&gt;<span class="w"> </span>db.users.find<span class="o">()</span>
 </span></code></pre></div></td></tr></table></div>
 <h1 id="asegurar-mongodb">Asegurar MongoDB</h1>
 <p>Para asegurar MongoDB, podemos habilitar la autenticación de MongoDB y crear usuarios con roles específicos en MongoDB.</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-11-10">10</a></span>
-<span class="normal"><a href="#__codelineno-11-11">11</a></span>
-<span class="normal"><a href="#__codelineno-11-12">12</a></span>
-<span class="normal"><a href="#__codelineno-11-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a>/usr/local/mongodb/bin/mongo
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a>&gt;<span class="w"> </span>use<span class="w"> </span>admin
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a>&gt;<span class="w"> </span>db.createUser
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="o">(</span>
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="w">  </span><span class="o">{</span>
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="w">    </span>user
-</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7"></a>:<span class="w"> </span><span class="s2">&quot;root&quot;</span>,
-</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="w">     </span>pwd:<span class="w"> </span><span class="s2">&quot;Root_pass1&quot;</span>,
-</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9"></a><span class="w">     </span>roles:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>role:<span class="w"> </span><span class="s2">&quot;root&quot;</span>,<span class="w"> </span>db:<span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">]</span><span class="w">    </span>
-</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="w">     </span><span class="o">}</span>
-</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11"></a><span class="o">)</span>
-</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12"></a>&gt;<span class="w"> </span>db.auth<span class="o">(</span><span class="s2">&quot;</span>
-</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13"></a><span class="s2">root&quot;</span>,<span class="w"> </span><span class="s2">&quot;Root_pass1&quot;</span><span class="o">)</span>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-12-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-12-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-12-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-12-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-12-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-12-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-12-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-12-10">10</a></span>
+<span class="normal"><a href="#__codelineno-12-11">11</a></span>
+<span class="normal"><a href="#__codelineno-12-12">12</a></span>
+<span class="normal"><a href="#__codelineno-12-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a>/usr/local/mongodb/bin/mongo
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a>&gt;<span class="w"> </span>use<span class="w"> </span>admin
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a>&gt;<span class="w"> </span>db.createUser
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="o">(</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="w">  </span><span class="o">{</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="w">    </span>user
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7"></a>:<span class="w"> </span><span class="s2">&quot;root&quot;</span>,
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8"></a><span class="w">     </span>pwd:<span class="w"> </span><span class="s2">&quot;Root_pass1&quot;</span>,
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="w">     </span>roles:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>role:<span class="w"> </span><span class="s2">&quot;root&quot;</span>,<span class="w"> </span>db:<span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">]</span><span class="w">    </span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10"></a><span class="w">     </span><span class="o">}</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11"></a><span class="o">)</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12"></a>&gt;<span class="w"> </span>db.auth<span class="o">(</span><span class="s2">&quot;</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13"></a><span class="s2">root&quot;</span>,<span class="w"> </span><span class="s2">&quot;Root_pass1&quot;</span><span class="o">)</span>
 </span></code></pre></div></td></tr></table></div>
 
 
